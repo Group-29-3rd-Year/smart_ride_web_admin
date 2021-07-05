@@ -19,7 +19,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 .form_container {
-    margin-top: 80px;
+    margin-top: 100px;
     margin-left: 140px;
     background-color: #F5F5F5;
     border-radius: 20px;
@@ -73,7 +73,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
     display: table;
     clear: both;
 }
-  
 .form_container button:hover {
     background-color: royalblue;
 }
@@ -85,10 +84,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
     color: white;
     cursor: pointer;
     border-radius: 20px;
-    margin-left: 100px;
+    margin-left: 115px;
     margin-top: 20px;
     font-weight: bold;
     font-size: large;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 800px) {
