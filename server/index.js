@@ -2,15 +2,18 @@ const express = require("express");
 const app =  express();
 const cors = require("cors");
 
-app.use(express.json()) //req.body
-app.use(cors())
+app.use(express.json()); //req.body
+app.use(cors());
 
-//ROUTES
+//ROUTES//
 //register 
 app.use("/smartride", require("./routes/register"));
 
-//login
+//login 
 app.use("/smartride", require("./routes/login"));
+
+//dashboard
+app.use("/smartride", require("./routes/dashboard"));
 
 
 app.listen(5000, () => { 

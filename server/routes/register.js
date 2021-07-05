@@ -1,22 +1,26 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const pool = require("../db");
 const bcrypt = require("bcrypt");
 const validInfo = require("../middleware/validInfo");
+const jwtGenerator = require("../utils/jwtGenerator");
 
 //registering
 
 router.post("/register", validInfo, async (req,res) => {
+
     try {
         
         //1. destructure the req.body
         const {name, phone_no, email, password} = req.body;
-
 
         //2. check if use exist (id user exist then throw error)
         const user = await pool.query("SELECT * FROM users WHERE email = $1," 
                                         [
                                             email
                                         ]);
+
+        res.json(user.rows);
 
         if(user.rows.length !== 0){
             return res.status(404).send("User already exists");
@@ -39,9 +43,9 @@ router.post("/register", validInfo, async (req,res) => {
 
         //5. generating out twt token
 
-        // const token = jwtGenerator(newUser.rows[0].user_id);
+        const jwtToken = jwtGenerator(newUser.rows[0].id);
 
-        // res.json({ token });
+        res.json({ jwtToken });
 
     } catch (err) {
         console.error(err.message);
