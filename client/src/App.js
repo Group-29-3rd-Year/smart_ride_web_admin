@@ -27,32 +27,32 @@ function App() {
         <div className="container">
           <Switch>
             <Route 
-              exact path="/login" 
+              exact path="/smartride/login" 
               render={props => 
                 !isAuthenticated ? (
                   <Login {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/dashboard" />
+                  <Redirect to="/smartride/dashboard" />
                 )
               }
             />
             <Route 
-              exact path="/register" 
+              exact path="/smartride/register" 
               render={props => 
                 !isAuthenticated ? (
                   <Register {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/login" />
+                  <Redirect to="/smartride/login" />
                 )
               }
             />
             <Route 
-              exact path="/dashboard" 
+              exact path="/smartride/dashboard" 
               render={props => 
                 isAuthenticated ? (
                   <Dashboard {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/login" />
+                  <Redirect to="/smartride/login" />
                 )
               }
             />
