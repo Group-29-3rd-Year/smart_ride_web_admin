@@ -1,4 +1,4 @@
-CREATE DATABASE jwttute;
+CREATE DATABASE smartride;
 
 CREATE TABLE users(
     user_id SERIAL PRIMARY KEY,
