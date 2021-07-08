@@ -12,6 +12,8 @@ import {BrowserRouter as Router,
 import Login from "./components/login";
 import Register from './components/register';
 import Dashboard from './components/dashboard';
+import SideNav from './components/widget/sidenav';
+import Header from './components/widget/header';
 
 function App() {
 

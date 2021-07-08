@@ -1,8 +1,20 @@
 import React, {Fragment, useState} from 'react';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import './style/register.css';
 
+const useStyles = makeStyles((theme) => ({
+    
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+      width: '140px',
+      height: '40px'
+    },
+}));
 
-const Register = () => {
+const Register = ({ setAuth }) => {
+
+    const classes = useStyles();
 
     const [inputs, setInputs] = useState({
          name: "",
@@ -100,17 +112,16 @@ const Register = () => {
                             </div>
                         </div>
 
-                        {/* <label>Re Type Password</label>
-                        <input 
-                            type="password" 
-                            name="password" 
-                            placeholder="Retype Password"
-                            value={password}
-                            onChange = {e => onChange(e)}
-                        /> */}
-                        {/* <div className="form-row"> */}
-                            <button type="submit" name="register">Register</button>
-                        {/* </div> */}
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            onClick={() => setAuth(true)}
+                        >
+                            Sign Up
+                        </Button>
                     </form>
                 </div>
             </div>

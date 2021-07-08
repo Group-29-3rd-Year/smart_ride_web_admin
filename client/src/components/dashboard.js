@@ -1,10 +1,26 @@
+import { Button, Grid } from '@material-ui/core';
 import React, {Fragment} from 'react';
+import './style/dashboard.css';
+import Header from './widget/header';
+import SideNav from './widget/sidenav';
 
 const Dashboard = ({ setAuth }) => {
+
     return(
         <Fragment>
-            <h1>Dashboard</h1>
-            <button onClick={() => setAuth(false)}>Log Out</button>
+            <div className="body">
+                <Grid >
+                <Header />
+                </Grid >
+                
+                <Grid >
+                    <SideNav />
+                </Grid >
+
+                <Button 
+                    
+                />
+            </div>
         </Fragment>
     );
 };
