@@ -1,7 +1,19 @@
 import React, {Fragment, useState} from 'react';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 import './style/login.css';
 
+const useStyles = makeStyles((theme) => ({
+    
+    submit: {
+      width: '140px',
+      height: '40px'
+    },
+}));
+
 const Login = ({ setAuth }) => {
+    
+    const classes = useStyles();
 
 //     const [inputs] = useState({
 //         email: "",
@@ -15,7 +27,7 @@ const Login = ({ setAuth }) => {
         <Fragment>
             <div className="body">
                 <div className="backgroundImg"></div>
-                <div className="form_container">
+                <div className="f_container">
                     <h1>Login</h1>
                     <form >
                         <div className="form-row">
@@ -40,16 +52,19 @@ const Login = ({ setAuth }) => {
                             </div>
                         </div>
                         
-                        {/* <div className="button"> */}
-                        <center>
-                            <button onClick={() => setAuth(true)}>Login</button>
-                        </center>
-                            
-                        {/* </div> */}
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            onClick={() => setAuth(true)}
+                        >
+                            Sign In
+                        </Button>
                     </form>
                 </div>
             </div>
-            
         </Fragment>
     );
 };
