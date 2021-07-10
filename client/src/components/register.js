@@ -1,7 +1,12 @@
 import React, {Fragment, useState} from 'react';
+import { toast } from 'react-toastify';
+import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import './style/register.css';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 const useStyles = makeStyles((theme) => ({
     
@@ -37,7 +42,7 @@ const Register = ({ setAuth }) => {
 
             const body = {name, phone_no, email, password};
             
-            const response = await fetch("http://localhost:5000//smartride/register", {
+            const response = await fetch("http://localhost:5000/smartride/register", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body)
@@ -45,7 +50,17 @@ const Register = ({ setAuth }) => {
 
             const parseRes = await response.json()
 
-            console.log(parseRes);
+            if(parseRes){
+                //console.log(parseRes);
+                localStorage.setItem("token", parseRes.token);
+                setAuth(true);
+
+                toast.success("Registered Successfully");
+            }else{
+                setAuth(false);
+                toast.error(parseRes)
+            }
+            
 
         } catch (err) {
             console.error(err.message);
@@ -69,6 +84,7 @@ const Register = ({ setAuth }) => {
                                     placeholder="Name"
                                     value={name}
                                     onChange = {e => onChange(e)}
+                                    required
                                 />
                             </div>
                         </div>
@@ -82,6 +98,7 @@ const Register = ({ setAuth }) => {
                                     placeholder="Phone Number"
                                     value={phone_no}
                                     onChange = {e => onChange(e)}
+                                    required
                                 />
                             </div>
                         </div>
@@ -95,6 +112,7 @@ const Register = ({ setAuth }) => {
                                     placeholder="Email"
                                     value={email}
                                     onChange = {e => onChange(e)}
+                                    required
                                 />
                             </div>
                         </div>
@@ -108,11 +126,12 @@ const Register = ({ setAuth }) => {
                                     placeholder="Passwrod"
                                     value={password}
                                     onChange = {e => onChange(e)}
+                                    required
                                 />
                             </div>
                         </div>
 
-                        <Button
+                        {/* <Button
                             type="submit"
                             fullWidth
                             variant="contained"
@@ -121,7 +140,15 @@ const Register = ({ setAuth }) => {
                             onClick={() => setAuth(true)}
                         >
                             Sign Up
-                        </Button>
+                        </Button> */}
+
+                        <button>Sign Up</button>
+                        <div className="login">
+                            <h4><b>Have Account ?</b></h4>
+                            <div className="login-link">
+                                <Link to="/smartride/login" style={{ textDecoration: 'none', color: '#1e90ff' }} >Here</Link>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
