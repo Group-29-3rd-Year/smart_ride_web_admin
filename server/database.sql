@@ -1,11 +1,6 @@
 CREATE DATABASE smartride;
 
-CREATE TABLE users(
-    user_id SERIAL PRIMARY KEY,
-    user_name VARCHAR(255) NOT NULL,
-    user_email VARCHAR(255) NOT NULL,
-    user_password VARCHAR(255) NOT NULL
-);
+CREATE TABLE users (user_id uuid PRIMARY KEY DEFAULT uuid_generate_v4(), user_name VARCHAR(255) NOT NULL,  phone_number VARCHAR(10) NOT NULL ,user_email VARCHAR(255) NOT NULL, user_password VARCHAR(255) NOT NULL, is_admin BOOLEAN);
 
 INSERT INTO users (user_name, user_email, user_password) VALUES ('henry', 'henry123@gmail.com', 'henry123');
 

@@ -29,6 +29,12 @@ const SideNav = ({ setAuth }) => {
     const [expand1, setExpand1] = useState(false);
     const [expand2, setExpand2] = useState(false);
 
+    const logout = (e) => {
+        e.preventDefault()
+        localStorage.removeItem("token")   //check logout
+        setAuth(false);
+    }
+
     return (
         <Fragment>
             <div className="side-menu">
@@ -139,19 +145,19 @@ const SideNav = ({ setAuth }) => {
                     </ul>
                 </div>
                 
-                <div className="side-menu-footer">
+                {/* <div className="side-menu-footer">
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
-                        color="default"              //// have to ccheck path
+                        color="default"              //// have to check path
                         className={classes.submit}
-                        // onClick={() => setAuth(false)}
+                        onClick={ e => logout()}
                     >
                         Log Out
                     </Button>
-                    {/* <button onClick={() => setAuth(false)}>Log Out</button> */}
-                </div>
+                    <button onClick={ e => logout(e)}>Log Out</button>
+                </div> */}
             </div>
         </Fragment>
         
