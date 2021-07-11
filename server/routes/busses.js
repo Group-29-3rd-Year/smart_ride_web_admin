@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const pool = require("../db");
+const authorization = require("../middleware/authorizationForBus");
 const jwtGenerator = require("../utils/jwtGenerator");
 
 router.post("/add", async (req, res) => {
@@ -45,6 +46,46 @@ router.get("/", async (req, res) => {
     }
 
     res.json(busses.rows);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+router.put("/update/:bus_id", async (req, res) => {
+  try {
+    //   1. destructure the req.body
+    const { number, start, end } = req.body;
+
+    //   res.json(req.bus.user);
+    let id = req.bus.user;
+
+    const updateBus = await pool.query(
+      "UPDATE bus SET bus_number = $1, route_start = $2, route_end = $3 WHERE bus_id = $4",
+      [number, start, end, id]
+    );
+
+    if (updateBus) {
+      res.json("Bus was updated");
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+router.put("/delete/:bus_id", authorization, async (req, res) => {
+  try {
+    let id = req.bus.user;
+
+    const deleteBus = await pool.query(
+      "UPDATE bus SET is_running = '0' WHERE bus_id = $1",
+      [id]
+    );
+
+    if (deleteBus) {
+      res.json("Bus was deleted");
+    }
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
