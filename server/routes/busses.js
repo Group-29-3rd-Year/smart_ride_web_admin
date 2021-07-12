@@ -1,12 +1,11 @@
 const router = require("express").Router();
+const { response } = require("express");
 const pool = require("../db");
-const authorization = require("../middleware/authorizationForBus");
-const jwtGenerator = require("../utils/jwtGenerator");
 
 router.post("/add", async (req, res) => {
   try {
     //1. destructure the req.body
-    const { number, route_start, route_end ,conductor_id} = req.body;
+    const { number, start, end } = req.body;
 
     //2. check if bus exist (if bus exist then throw error)
     const bus = await pool.query("SELECT * FROM bus WHERE bus_number = $1", [
@@ -19,14 +18,19 @@ router.post("/add", async (req, res) => {
 
     //4. enter new bus inside our database
     const newBus = await pool.query(
-      "INSERT INTO bus (bus_number, route_start, route_end, conductor_id, is_running) VALUES ( $1, $2, $3, $4, '1') RETURNING *",
-      [number, route_start, route_end, conductor_id]
+      "INSERT INTO bus (bus_number, route_start, route_end, is_running) VALUES ( $1, $2, $3, '1') RETURNING *",
+      [number, start, end]
     );
 
-    //5. generating out twt token
-    const token = jwtGenerator(newBus.rows[0].bus_id);
+    if(newBus) {
+      res.json("Bus was added");
+    }
 
-    res.json({ token });
+    //5. generating out twt token
+    // const token = jwtGenerator(newBus.rows[0].bus_id);
+
+    // res.json({ token });
+    
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -55,14 +59,14 @@ router.get("/", async (req, res) => {
 router.put("/update/:bus_id", async (req, res) => {
   try {
     //   1. destructure the req.body
-    const { number, route_start, route_end , conductor_id} = req.body;
+    const { number, start, end } = req.body;
 
     //   res.json(req.bus.user);
-    let id = req.bus.user;
+    let id = req.params.bus_id;
 
     const updateBus = await pool.query(
-      "UPDATE bus SET bus_number = $1, r_start = $2, r_end = $3 , conductor_id = $4 WHERE bus_id = $5",
-      [number, route_start, route_end, conductor_id, id]
+      "UPDATE bus SET bus_number = $1, route_start = $2, route_end = $3  WHERE bus_id = $4",
+      [number, start, end,  id]
     );
 
     if (updateBus) {
@@ -74,9 +78,9 @@ router.put("/update/:bus_id", async (req, res) => {
   }
 });
 
-router.put("/delete/:bus_id", authorization, async (req, res) => {
+router.put("/delete/:bus_id", async (req, res) => {
   try {
-    let id = req.bus.user;
+    let id = req.params.bus_id;
 
     const deleteBus = await pool.query(
       "UPDATE bus SET is_running = '0' WHERE bus_id = $1",

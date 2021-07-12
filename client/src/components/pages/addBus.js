@@ -12,12 +12,11 @@ const AddBus = () => {
 
     const [inputs, setInputs] = useState({
         number: "",
-        r_start: "",
-        r_end: "",
-        conductor_id: ""
+        start: "",
+        end: "",
     });
 
-   const {number, r_start, r_end, conductor_id} = inputs;
+   const {number, start, end} = inputs;
 
     const onChange = (e) => {
         setInputs({...inputs, [e.target.name]
@@ -29,7 +28,7 @@ const AddBus = () => {
 
         try {
 
-            const body = {number, r_start, r_end, conductor_id};
+            const body = {number, start, end};
             
             const response = await fetch("http://localhost:5000/busses/add", {
                 method: "POST",
@@ -87,9 +86,9 @@ const AddBus = () => {
                                 <label>Route Start</label>
                                 <input 
                                     type="text" 
-                                    name="r_start" 
+                                    name="start" 
                                     placeholder="Route Start"
-                                    value={r_start}
+                                    value={start}
                                     onChange = {e => onChange(e)}
                                     required
                                 />
@@ -101,23 +100,9 @@ const AddBus = () => {
                                 <label>Route End</label>
                                 <input 
                                     type="text" 
-                                    name="r_end" 
+                                    name="end" 
                                     placeholder="Route End"
-                                    value={r_end}
-                                    onChange = {e => onChange(e)}
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div className="add-form-row">
-                            <div className="col-75">
-                                <label>Conductor ID</label>
-                                <input 
-                                    type="text" 
-                                    name="conductor_id" 
-                                    placeholder="Conductor ID"
-                                    value={conductor_id}
+                                    value={end}
                                     onChange = {e => onChange(e)}
                                     required
                                 />
