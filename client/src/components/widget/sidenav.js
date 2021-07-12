@@ -11,7 +11,7 @@ import ListIcon from '@material-ui/icons/List';
 import { makeStyles } from '@material-ui/core/styles';
 import './sidenav.css';
 import { Button } from '@material-ui/core';
-// import AddBus from '../pages/addBus';
+import AddBus from '../pages/addBus';
 
 import {
     BrowserRouter as Router, 
@@ -71,7 +71,7 @@ const SideNav = ({ setAuth }) => {
                     <ul>
 
                         <li>
-                            <a className="menu-item" onClick={() => {history.push("../dashboard");}}>
+                            <a className="menu-item" onClick={() => {history.push("../smartride/dashboard");}}>
                                 <div className="menu-icon">
                                     <TableChartIcon />
                                 </div>
@@ -89,7 +89,7 @@ const SideNav = ({ setAuth }) => {
                             <div className={`sub-menu1 ${expand1 ? "active1" : ""}`}>
                                 <ul>
                                     <li>
-                                        <a className="sub-menu-item" onClick={() => {history.push("../smartride/dashboard/addBus");}}>
+                                        <a className="sub-menu-item" onClick={() => {history.push("../addBus");}}>
                                             {/* <Link to="../pages/addBus"></Link> */}
                                             {/* <Route path="../pages/aadBus" component={AddBus} /> */}
                                             <div className="menu-icon">
@@ -99,7 +99,7 @@ const SideNav = ({ setAuth }) => {
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="sub-menu-item" onClick={() => {history.push("../smartride/dashboard/updatebus");}}>
+                                        <a className="sub-menu-item" onClick={() => {history.push("../updatebus");}}>
                                             <div className="menu-icon">
                                                 <UpdateIcon />
                                             </div>
@@ -107,7 +107,7 @@ const SideNav = ({ setAuth }) => {
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="sub-menu-item" onClick={() => {history.push("../smartride/dashboard/viewbus");}}>
+                                        <a className="sub-menu-item" onClick={() => {history.push("../viewbus");}}>
                                             <div className="menu-icon">
                                                 <ListIcon />
                                             </div>
