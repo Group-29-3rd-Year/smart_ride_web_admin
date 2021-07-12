@@ -13,9 +13,12 @@ import {
 import Login from "./components/login";
 import Register from './components/register';
 import Dashboard from './components/dashboard';
+import AddBus from './components/pages/addBus';
 import SideNav from './components/widget/sidenav';
 import Header from './components/widget/header';
 import { parse } from 'ipaddr.js';
+import UpdateBus from './components/pages/updateBus';
+import ViewBus from './components/pages/viewBus';
 
 function App() {
 
@@ -52,6 +55,8 @@ function App() {
       <Router>
         <div className="container">
           <Switch>
+
+            {/* login */}
             <Route 
               exact path="/smartride/login" 
               render={props => 
@@ -62,6 +67,8 @@ function App() {
                 )
               }
             />
+
+            {/* register */}
             <Route 
               exact path="/smartride/register" 
               render={props => 
@@ -72,6 +79,8 @@ function App() {
                 )
               }
             />
+
+            {/* dashboard */}
             <Route 
               exact path="/smartride/dashboard" 
               render={props => 
@@ -82,6 +91,43 @@ function App() {
                 )
               }
             />
+
+            {/* addbus */}
+            <Route 
+              exact path="/smartride/dashboard/addbus" 
+              render={props => 
+                isAuthenticated ? (
+                  <AddBus {...props} setAuth={setAuth}/>
+                ) : (
+                  <Redirect to="/smartride/login" />
+                )
+              }
+            />
+
+            {/* updatebus */}
+            <Route 
+              exact path="/smartride/dashboard/updatebus" 
+              render={props => 
+                isAuthenticated ? (
+                  <UpdateBus {...props} setAuth={setAuth}/>
+                ) : (
+                  <Redirect to="/smartride/login" />
+                )
+              }
+            />
+
+            {/* viewbus */}
+            <Route 
+              exact path="/smartride/dashboard/viewbus" 
+              render={props => 
+                isAuthenticated ? (
+                  <ViewBus {...props} setAuth={setAuth}/>
+                ) : (
+                  <Redirect to="/smartride/login" />
+                )
+              }
+            />
+            
           </Switch>
         </div>
       </Router>

@@ -7,9 +7,20 @@ import AddIcon from '@material-ui/icons/Add';
 import UpdateIcon from '@material-ui/icons/Update';
 import RemoveIcon from '@material-ui/icons/Remove';
 import MapIcon from '@material-ui/icons/Map';
+import ListIcon from '@material-ui/icons/List';
 import { makeStyles } from '@material-ui/core/styles';
 import './sidenav.css';
 import { Button } from '@material-ui/core';
+// import AddBus from '../pages/addBus';
+
+import {
+    BrowserRouter as Router, 
+    Switch, 
+    Route,
+    Link, 
+    Redirect,
+    useHistory
+} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     
@@ -35,6 +46,8 @@ const SideNav = ({ setAuth }) => {
         setAuth(false);
     }
 
+    let history = useHistory();
+
     return (
         <Fragment>
             <div className="side-menu">
@@ -58,7 +71,7 @@ const SideNav = ({ setAuth }) => {
                     <ul>
 
                         <li>
-                            <a className="menu-item">
+                            <a className="menu-item" onClick={() => {history.push("../dashboard");}}>
                                 <div className="menu-icon">
                                     <TableChartIcon />
                                 </div>
@@ -76,25 +89,30 @@ const SideNav = ({ setAuth }) => {
                             <div className={`sub-menu1 ${expand1 ? "active1" : ""}`}>
                                 <ul>
                                     <li>
-                                        <a className="sub-menu-item">
+                                        <a className="sub-menu-item" onClick={() => {history.push("../smartride/dashboard/addBus");}}>
+                                            {/* <Link to="../pages/addBus"></Link> */}
+                                            {/* <Route path="../pages/aadBus" component={AddBus} /> */}
                                             <div className="menu-icon">
                                                 <AddIcon />
                                             </div>
-                                            Add Bus</a>
+                                            Add Bus
+                                        </a>
                                     </li>
                                     <li>
-                                        <a className="sub-menu-item">
+                                        <a className="sub-menu-item" onClick={() => {history.push("../smartride/dashboard/updatebus");}}>
                                             <div className="menu-icon">
                                                 <UpdateIcon />
                                             </div>
-                                            Update Bus</a>
+                                            Update/Delete Bus
+                                        </a>
                                     </li>
                                     <li>
-                                        <a className="sub-menu-item">
+                                        <a className="sub-menu-item" onClick={() => {history.push("../smartride/dashboard/viewbus");}}>
                                             <div className="menu-icon">
-                                                <RemoveIcon />
+                                                <ListIcon />
                                             </div>
-                                            Delete Bus</a>
+                                            View Busses
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -109,26 +127,29 @@ const SideNav = ({ setAuth }) => {
                             </a>
                             <div className={`sub-menu2 ${expand2 ? "active2" : ""}`}>
                                 <ul>
-                                    <li>
+                                    {/* <li>
                                         <a className="sub-menu-item">
                                             <div className="menu-icon">
                                                 <AddIcon />
                                             </div>
-                                            Add Conductor</a>
-                                    </li>
+                                            Add Conductor
+                                        </a>
+                                    </li> */}
                                     <li>
                                         <a className="sub-menu-item">
                                             <div className="menu-icon">
                                                 <UpdateIcon />
                                             </div>
-                                            Update Conductor</a>
+                                            Update/Delete Conductor
+                                        </a>
                                     </li>
                                     <li>
                                         <a className="sub-menu-item">
                                             <div className="menu-icon">
                                                 <RemoveIcon />
                                             </div>
-                                            Delete Conductor</a>
+                                            View Conductor
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
