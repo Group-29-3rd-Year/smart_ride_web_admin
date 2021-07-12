@@ -79,6 +79,7 @@ body {
   font-size: 30px;
   line-height: 40px;
   text-align: center;
+  cursor: pointer;
 }
 
 .side-menu .main-menu .sub-menu1 {
@@ -96,11 +97,12 @@ body {
 }
 
 .side-menu .main-menu .sub-menu1 a {
-  margin: 10px 0;
+  margin: 5px 0;
 }
 
 .side-menu .main-menu .sub-menu1 .sub-menu-item {
   margin: 5px 20px;
+  cursor: pointer;
 }
 
 .side-menu .main-menu .sub-menu1 .sub-menu-item .menu-icon {
@@ -110,6 +112,7 @@ body {
   font-size: 30px;
   line-height: 40px;
   text-align: center;
+  cursor: pointer;
 }
 
 .side-menu .main-menu .sub-menu2 {
@@ -132,6 +135,8 @@ body {
 
 .side-menu .main-menu .sub-menu2 .sub-menu-item {
   margin: 5px 20px;
+  cursor: pointer;
+  cursor: pointer;
 }
 
 .side-menu .main-menu .sub-menu2 .sub-menu-item .menu-icon {
@@ -141,6 +146,7 @@ body {
   font-size: 30px;
   line-height: 40px;
   text-align: center;
+  cursor: pointer;
 }
 
 .side-menu-footer {

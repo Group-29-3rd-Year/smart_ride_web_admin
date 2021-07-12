@@ -9,13 +9,13 @@ const Dashboard = ({ setAuth }) => {
     return(
         <Fragment>
             <div className="body">
-                <Grid >
+                {/* <Grid > */}
                 <Header />
-                </Grid >
+                {/* </Grid > */}
                 
-                <Grid >
+                {/* <Grid > */}
                     <SideNav />
-                </Grid >
+                {/* </Grid > */}
 
                 <Button 
                     
