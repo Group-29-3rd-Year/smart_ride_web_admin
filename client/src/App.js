@@ -94,7 +94,7 @@ function App() {
 
             {/* addbus */}
             <Route 
-              exact path="/smartride/dashboard/addbus" 
+              exact path="/addbus" 
               render={props => 
                 isAuthenticated ? (
                   <AddBus {...props} setAuth={setAuth}/>
@@ -106,7 +106,7 @@ function App() {
 
             {/* updatebus */}
             <Route 
-              exact path="/smartride/dashboard/updatebus" 
+              exact path="/updatebus" 
               render={props => 
                 isAuthenticated ? (
                   <UpdateBus {...props} setAuth={setAuth}/>
@@ -118,7 +118,7 @@ function App() {
 
             {/* viewbus */}
             <Route 
-              exact path="/smartride/dashboard/viewbus" 
+              exact path="/viewbus" 
               render={props => 
                 isAuthenticated ? (
                   <ViewBus {...props} setAuth={setAuth}/>
@@ -127,7 +127,6 @@ function App() {
                 )
               }
             />
-            
           </Switch>
         </div>
       </Router>
