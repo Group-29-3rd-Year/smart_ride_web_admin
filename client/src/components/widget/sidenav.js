@@ -39,6 +39,7 @@ const SideNav = ({ setAuth }) => {
 
     const [expand1, setExpand1] = useState(false);
     const [expand2, setExpand2] = useState(false);
+    const [expand3, setExpand3] = useState(false);
 
     const logout = (e) => {
         e.preventDefault()
@@ -156,6 +157,37 @@ const SideNav = ({ setAuth }) => {
                         </li>
 
                         <li>
+                            <a onClick= {() => setExpand3(!expand3)} className="menu-item">
+                                <div className="menu-icon">
+                                    <DirectionsBusIcon />
+                                </div>
+                                Route Details
+                            </a>
+                            <div className={`sub-menu3 ${expand3 ? "active3" : ""}`}>
+                                <ul>
+                                    <li>
+                                        <a className="sub-menu-item" onClick={() => {history.push("../addhalt");}}>
+                                            {/* <Link to="../pages/addBus"></Link> */}
+                                            {/* <Route path="../pages/aadBus" component={AddBus} /> */}
+                                            <div className="menu-icon">
+                                                <AddIcon />
+                                            </div>
+                                            Add Halt
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a className="sub-menu-item" onClick={() => {history.push("../viewhalt");}}>
+                                            <div className="menu-icon">
+                                                <RemoveIcon />
+                                            </div>
+                                            View Halts
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li>
                             <a href="#" className="menu-item">
                                 <div className="menu-icon">
                                     <MapIcon />
@@ -166,19 +198,19 @@ const SideNav = ({ setAuth }) => {
                     </ul>
                 </div>
                 
-                {/* <div className="side-menu-footer">
+                <div className="side-menu-footer">
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
                         color="default"              //// have to check path
                         className={classes.submit}
-                        onClick={ e => logout()}
+                        onClick={ e => logout.bind(e)}
                     >
                         Log Out
                     </Button>
-                    <button onClick={ e => logout(e)}>Log Out</button>
-                </div> */}
+                    {/* <button onClick={ e => logout(e)}>Log Out</button> */}
+                </div>
             </div>
         </Fragment>
         

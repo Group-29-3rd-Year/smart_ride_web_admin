@@ -19,6 +19,8 @@ import Header from './components/widget/header';
 import { parse } from 'ipaddr.js';
 import UpdateBus from './components/pages/updateBus';
 import ViewBus from './components/pages/viewBus';
+import AddHalt from './components/pages/addHalt';
+import ViewHalt from './components/pages/viewHalt';
 
 function App() {
 
@@ -122,6 +124,30 @@ function App() {
               render={props => 
                 isAuthenticated ? (
                   <ViewBus {...props} setAuth={setAuth}/>
+                ) : (
+                  <Redirect to="/smartride/login" />
+                )
+              }
+            />
+
+            {/* addhalt */}
+            <Route 
+              exact path="/addhalt" 
+              render={props => 
+                isAuthenticated ? (
+                  <AddHalt {...props} setAuth={setAuth}/>
+                ) : (
+                  <Redirect to="/smartride/login" />
+                )
+              }
+            />
+
+            {/* viewhalt */}
+            <Route 
+              exact path="/viewhalt" 
+              render={props => 
+                isAuthenticated ? (
+                  <ViewHalt {...props} setAuth={setAuth}/>
                 ) : (
                   <Redirect to="/smartride/login" />
                 )

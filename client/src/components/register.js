@@ -36,7 +36,7 @@ const Register = ({ setAuth }) => {
     };
 
     const onSubmitForm = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         try {
 
