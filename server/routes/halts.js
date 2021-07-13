@@ -7,7 +7,7 @@ router.post("/add", async (req, res) => {
     const { name } = req.body;
 
     //2. check if bus exist (if bus exist then throw error)
-    const halt = await pool.query("SELECT * FROM halt WHERE route_name = $1", [
+    const halt = await pool.query("SELECT * FROM halt WHERE halt_name = $1", [
       name,
     ]);
 
@@ -17,7 +17,7 @@ router.post("/add", async (req, res) => {
 
     //4. enter new bus inside our database
     const newHalt = await pool.query(
-      "INSERT INTO halt (route_name, is_deleted) VALUES ( $1, '0') RETURNING *",
+      "INSERT INTO halt (halt_name, is_deleted) VALUES ( $1, '0') RETURNING *",
       [name]
     );
 
@@ -33,7 +33,7 @@ router.post("/add", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     //1. select query for view all busses in our database
-    const halts = await pool.query("SELECT route_id, route_name FROM halt");
+    const halts = await pool.query("SELECT halt_id, halt_name FROM halt");
 
     //2. check busses in the database
     if (halts.rows.length === 0) {
@@ -56,7 +56,7 @@ router.put("/update/:halt_id", async (req, res) => {
     let id = req.params.halt_id;
 
     const updateHalt = await pool.query(
-      "UPDATE halt SET route_name = $1 WHERE route_id = $2",
+      "UPDATE halt SET halt_name = $1 WHERE halt_id = $2",
       [name, id]
     );
 
@@ -75,7 +75,7 @@ router.put("/delete/:halt_id", async (req, res) => {
     let id = req.params.halt_id;
 
     const deleteHalt = await pool.query(
-      "UPDATE halt SET is_deleted = '1' WHERE route_id = $1",
+      "UPDATE halt SET is_deleted = '1' WHERE halt_id = $1",
       [id]
     );
 

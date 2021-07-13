@@ -14,6 +14,8 @@ import Header from '../widget/header';
 import SideNav from '../widget/sidenav';
 import 'react-toastify/dist/ReactToastify.css';
 import '../style/updatebus.css';
+import EditIcon from '@material-ui/icons/Edit';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 toast.configure();
 
@@ -49,12 +51,27 @@ toast.configure();
 
     const useStyles = makeStyles({
         table: {
-          minWidth: 900,
+          minWidth: 720,
         },
 
         cell: {
             width: 150,
+            height: 50
+        },
+
+        cellActionHead: {
+            width: 120,
+            height: 50
+        },
+
+        cellAction: {
+            width: 60,
+            height: 50,
+            align: "left"
         }
+
+        
+
     });
 
 
@@ -77,8 +94,9 @@ const UpdateBus = () => {
                                     <StyledTableCell className={classes.cell} align="center">Route Start</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Route End</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Conductor</StyledTableCell>
-                                    <StyledTableCell className={classes.cell} align="center">Edit</StyledTableCell>
-                                    <StyledTableCell className={classes.cell} align="center">Delete</StyledTableCell>
+                                    <StyledTableCell className={classes.cellActionHead} align="center">Action</StyledTableCell>
+                                    {/* <StyledTableCell className={classes.cell} align="center">Edit</StyledTableCell>
+                                    <StyledTableCell className={classes.cell} align="center">Delete</StyledTableCell> */}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -88,8 +106,8 @@ const UpdateBus = () => {
                                         <StyledTableCell className={classes.cell} align="center">{row.route_start}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_end}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.conductor}</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">Edit</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">Delete</StyledTableCell>
+                                        <StyledTableCell className={classes.cellAction} align="center"><EditIcon /></StyledTableCell>
+                                        <StyledTableCell className={classes.cellAction} align="center" width='10px' height='10px'><CancelIcon /></StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
