@@ -57,7 +57,10 @@ const ViewBus = () => {
       const busArray = await res.json();
 
       setBusList(busArray);
-
+       
+      if(busArray){
+        console.log("True");
+      }
       //console.log(busArray);
     }
 
@@ -99,16 +102,20 @@ const ViewBus = () => {
                                     <StyledTableCell className={classes.cell} align="center">Conductor</StyledTableCell>
                                 </TableRow>
                             </TableHead>
-                            <TableBody>
+
+                            
+                              <TableBody>
                                 {busList.map((row) => (
                                     <StyledTableRow key={row.bus_no}>
                                         <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.bus_number}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_start}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_end}</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">{row.conductor_id == null ? "Not Assigned" : row.conductor_id}</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center">{row.conductor_id == null || '0' ? "Not Assigned" : row.conductor_id}</StyledTableCell>
                                     </StyledTableRow>
                                 ))}
-                            </TableBody>
+                              </TableBody>
+                            
+                            
                         </Table>
                     </TableContainer>
                 </div>

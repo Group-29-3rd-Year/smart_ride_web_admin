@@ -49,14 +49,15 @@ toast.configure();
         },
 
         cellActionHead: {
-            width: 120,
+            width: 60,
             height: 50
         },
 
         cellAction: {
             width: 60,
             height: 50,
-            align: "left"
+            align: "left",
+            cursor: "pointer"
         }
 
         
@@ -76,6 +77,30 @@ const UpdateBus = () => {
       setBusList(busArray);
 
       //console.log(busArray);
+    }
+
+    async function deleteBus(id) {
+        console.log(id);
+        try {
+            const res = await fetch(`http://localhost:5000/busses/delete/${id}`, {
+                method: "PUT"
+            });
+
+            const parseRes = await res.json();
+            setBusList(busList.filter(bus => bus.bus_id !== id));
+
+            if(parseRes){
+                //console.log(parseRes);
+                //window.location.reload();
+                toast.success("Deleted Successfully");
+            }else{
+                
+                toast.error(parseRes)
+            }
+
+        } catch (err) {
+            console.log(err.message);
+        }
     }
 
     useEffect(() => {
@@ -114,20 +139,20 @@ const UpdateBus = () => {
                                     <StyledTableCell className={classes.cell} align="center">Route Start</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Route End</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Conductor</StyledTableCell>
-                                    <StyledTableCell className={classes.cellActionHead} align="center">Action</StyledTableCell>
-                                    {/* <StyledTableCell className={classes.cell} align="center">Edit</StyledTableCell>
-                                    <StyledTableCell className={classes.cell} align="center">Delete</StyledTableCell> */}
+                                    <StyledTableCell className={classes.cellActionHead} align="center"></StyledTableCell>
+                                    <StyledTableCell className={classes.cellActionHead} align="center"></StyledTableCell>
+                                    {/* <StyledTableCell className={classes.cell} align="center">Delete</StyledTableCell> */}
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {busList.map((row) => (
-                                    <StyledTableRow key={row.bus_no}>
+                                    <StyledTableRow key={row.bus_id}>
                                         <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.bus_number}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_start}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_end}</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">{row.conductor_id == null ? "Not Assigned" : row.conductor_id}</StyledTableCell>
-                                        <StyledTableCell className={classes.cellAction} align="center"><EditIcon /></StyledTableCell>
-                                        <StyledTableCell className={classes.cellAction} align="center" width='10px' height='10px'><CancelIcon /></StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center">{row.conductor_id == null || '0' ? "Not Assigned" : row.conductor_id}</StyledTableCell>
+                                        <StyledTableCell className={classes.cellAction} align="center" ><UpdateSingleBus /></StyledTableCell>
+                                        <StyledTableCell className={classes.cellAction} align="right"  height='5px' onClick={() => deleteBus(row.bus_id)}><CancelIcon /></StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>

@@ -8,6 +8,7 @@ import UpdateIcon from '@material-ui/icons/Update';
 import RemoveIcon from '@material-ui/icons/Remove';
 import MapIcon from '@material-ui/icons/Map';
 import ListIcon from '@material-ui/icons/List';
+import StreetviewIcon from '@material-ui/icons/Streetview';
 import { makeStyles } from '@material-ui/core/styles';
 import './sidenav.css';
 import { Button } from '@material-ui/core';
@@ -159,7 +160,7 @@ const SideNav = ({ setAuth }) => {
                         <li>
                             <a onClick= {() => setExpand3(!expand3)} className="menu-item">
                                 <div className="menu-icon">
-                                    <DirectionsBusIcon />
+                                    <StreetviewIcon />
                                 </div>
                                 Route Details
                             </a>
