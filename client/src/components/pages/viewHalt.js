@@ -1,6 +1,6 @@
 import { Grid } from '@material-ui/core';
 import { toast } from 'react-toastify';
-import React, { Fragment, useState ,Component } from 'react';
+import React, { Fragment, useState ,Component, useEffect} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -13,6 +13,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Header from '../widget/header';
 import SideNav from '../widget/sidenav';
 import 'react-toastify/dist/ReactToastify.css';
+import CancelIcon from '@material-ui/icons/Cancel';
 import '../style/viewhalt.css';
 
 toast.configure();
@@ -38,27 +39,81 @@ toast.configure();
 
       const useStyles = makeStyles({
         table: {
-          minWidth: 300,
+          minWidth: 360,
         },
 
         cell: {
-            width: 200,
+            width: 150,
+            height: 50
+        },
+
+        cellAction: {
+            width: 106,
+            height: 50,
+            //align: "center",
+            cursor: "pointer"
+        },
+
+        noCell: {
+            width: 360,
+            height: 50
         }
       });
 
 const ViewHalt = () => {
 
-    function createData(halt_id, halt_name) {
-        return { halt_id, halt_name };
-    }
+    // function createData(halt_id, halt_name) {
+    //     return { halt_id, halt_name };
+    // }
     
-    const rows = [
-        createData( 1,'Galle'),
-        createData( 2,'Kalegana'),
-        createData( 3,'Elpitiya'),
-        createData( 4,'Rathgama' ),
-        createData( 5,'Dodangoda'),
-    ];
+    // const rows = [
+    //     createData( 1,'Galle'),
+    //     createData( 2,'Kalegana'),
+    //     createData( 3,'Elpitiya'),
+    //     createData( 4,'Rathgama' ),
+    //     createData( 5,'Dodangoda'),
+    // ];
+
+    const [haltList, setHaltList] = useState([]);
+
+    async function getHalts() {
+        const res = await fetch("http://localhost:5000/halts");
+  
+        const haltArray = await res.json();
+  
+        setHaltList(haltArray);
+
+    }
+
+    async function deleteHalt(id) {
+        try {
+            const res = await fetch(`http://localhost:5000/halts/delete/${id}`, {
+                method: "PUT"
+            });
+
+            
+            const parseRes = await res.json();
+            setHaltList(haltList.filter(halt => halt.halt_id !== id));
+
+            if(parseRes){
+                //console.log(parseRes);
+                //window.location.reload();
+                toast.success("Deleted Successfully");
+            }else{
+                
+                toast.error(parseRes)
+            }
+
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
+  
+      useEffect(() => {
+        getHalts();
+      }, []);
+  
+      //console.log(haltList);
 
     const classes = useStyles();
 
@@ -67,27 +122,29 @@ const ViewHalt = () => {
             <div className="body">
                 <Header />
                 <SideNav />
+                    <div className="view_halt_container">
+                        <TableContainer component={Paper}>
+                            <Table className={classes.table} aria-label="customized table">
+                                <TableHead>
+                                    <TableRow>
+                                        <StyledTableCell className={classes.cell} align="center">Halt No</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center">Name</StyledTableCell>
+                                        <StyledTableCell className={classes.cellAction}>Action</StyledTableCell>
+                                    </TableRow>
+                                </TableHead>
 
-                <div className="view_halt_container">
-                    <TableContainer component={Paper}>
-                        <Table className={classes.table} aria-label="customized table">
-                            <TableHead>
-                                <TableRow>
-                                    <StyledTableCell className={classes.cell} align="center">Halt No</StyledTableCell>
-                                    <StyledTableCell className={classes.cell} align="center">Name</StyledTableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {rows.map((row) => (
-                                    <StyledTableRow key={row.halt_id}>
-                                        <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.halt_id}</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">{row.halt_name}</StyledTableCell>
-                                    </StyledTableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </div>
+                                    <TableBody>
+                                            {haltList.map((row) => (
+                                                <StyledTableRow key={row.halt_id}>
+                                                    <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.halt_id}</StyledTableCell>
+                                                    <StyledTableCell className={classes.cell} align="center">{row.halt_name}</StyledTableCell>
+                                                    <StyledTableCell className={classes.cellAction} align="right"  height='5px' onClick={() => deleteHalt(row.halt_id)}><CancelIcon /></StyledTableCell>
+                                                </StyledTableRow>
+                                            ))}
+                                    </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </div>
             </div>
         </Fragment>
     );
