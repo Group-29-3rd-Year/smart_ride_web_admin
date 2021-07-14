@@ -5,12 +5,12 @@ router.post("/add", async (req, res) => {
   try {
     //1. destructure the req.body
     const { name } = req.body;
-
+    console.log(req.body);
     //2. check if bus exist (if bus exist then throw error)
     const halt = await pool.query("SELECT * FROM halt WHERE halt_name = $1", [
-      name,
-    ]);
-
+      name, 
+    ]);  
+ 
     if (halt.rows.length !== 0) {
       return res.status(401).send("Halt already exists");
     }

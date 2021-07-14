@@ -18,7 +18,7 @@ router.post("/add", async (req, res) => {
 
     //4. enter new bus inside our database
     const newBus = await pool.query(
-      "INSERT INTO bus (bus_number, route_start, route_end, is_running) VALUES ( $1, $2, $3, '1') RETURNING *",
+      "INSERT INTO bus (bus_number, route_start, route_end, latitude, longitude,  is_running) VALUES ( $1, $2, $3, 0.0 , 0.0 , '1') RETURNING *",
       [number, start, end]
     );
 
@@ -30,7 +30,7 @@ router.post("/add", async (req, res) => {
     // const token = jwtGenerator(newBus.rows[0].bus_id);
 
     // res.json({ token });
-    
+     
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -42,8 +42,8 @@ router.get("/", async (req, res) => {
     //1. select query for view all busses in our database
     const busses = await pool.query(
       "SELECT bus_number, route_start, route_end, conductor_id FROM bus"
-    );
-
+    ); 
+    console.log(busses);
     //2. check busses in the database
     if (busses.rows.length === 0) {
       return res.status(401).json("No any bus in the database.");

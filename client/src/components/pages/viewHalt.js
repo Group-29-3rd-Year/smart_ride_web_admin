@@ -17,19 +17,6 @@ import '../style/viewhalt.css';
 
 toast.configure();
 
-    function createData(halt_id, halt_name) {
-        return { halt_id, halt_name };
-    }
-    
-    const rows = [
-        createData( 1,'Galle'),
-        createData( 2,'Kalegana'),
-        createData( 3,'Elpitiya'),
-        createData( 4,'Rathgama' ),
-        createData( 5,'Dodangoda'),
-    ];
-
-
     const StyledTableCell = withStyles((theme) => ({
         head: {
           backgroundColor: theme.palette.common.black,
@@ -51,15 +38,27 @@ toast.configure();
 
       const useStyles = makeStyles({
         table: {
-          minWidth: 150,
+          minWidth: 300,
         },
 
         cell: {
-            width: 150,
+            width: 200,
         }
       });
 
 const ViewHalt = () => {
+
+    function createData(halt_id, halt_name) {
+        return { halt_id, halt_name };
+    }
+    
+    const rows = [
+        createData( 1,'Galle'),
+        createData( 2,'Kalegana'),
+        createData( 3,'Elpitiya'),
+        createData( 4,'Rathgama' ),
+        createData( 5,'Dodangoda'),
+    ];
 
     const classes = useStyles();
 

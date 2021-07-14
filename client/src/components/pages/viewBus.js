@@ -1,6 +1,7 @@
 import { Grid } from '@material-ui/core';
 import { toast } from 'react-toastify';
-import React, { Fragment, useState ,Component } from 'react';
+import Axios from 'axios';
+import React, { Fragment, useState ,Component, useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -16,36 +17,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../style/viewbus.css';
 
 toast.configure();
-
-    //const body = {bus_number, r_start, r_end, conductor_id};
-    function createData(bus_no, route_start, route_end, conductor) {
-        return { bus_no, route_start, route_end, conductor };
-      }
-      
-      const rows = [
-        createData('NP-6566', 'Galle','Wackwella', 1),
-        createData('NQ-4235', 'Galle', 'Hikkaduwa', 2),
-        createData('NQ-2211', 'Elpitiya', 'Karapitiye', 4),
-        createData('NP-6063', 'Rathgama' , 'Hikkaduwa', 3),
-        createData('NQ-4411', 'Dodangoda', 'Galle' , 5),
-      ];
-
-    // const busses = fetch("http://localhost:5000/busses", {
-    //             method: "GET",
-    //             headers: {"Content-Type" : "application/json"},
-    //             body: JSON.stringify(body)
-    //         });
-
-    // let bus = [];
-    // for(let i = 0; i < bus.length; i++) {
-    //     bus[i] = {
-    //         bus_number: busses.bus_number,
-    //         r_start: busses.r_start,
-    //         r_end: busses.r_end,
-    //         conductor_id: busses.conductor_id
-
-    //     }
-    // }
 
     const StyledTableCell = withStyles((theme) => ({
         head: {
@@ -78,6 +49,37 @@ toast.configure();
 
 const ViewBus = () => {
 
+    const [busList, setBusList] = useState([]);
+
+    async function getBusses() {
+      const res = await fetch("http://localhost:5000/busses");
+
+      const busArray = await res.json();
+
+      setBusList(busArray);
+
+      //console.log(busArray);
+    }
+
+    useEffect(() => {
+      getBusses();
+    }, []);
+
+    console.log(busList);
+
+    // /* dummmy data */
+    // function createData(bus_no, route_start, route_end, conductor_id) {
+    //   return { bus_no, route_start, route_end, conductor_id };
+    // }
+    
+    // const rows = [
+    //   createData('NP-6566', 'Galle','Wackwella', 1),
+    //   createData('NQ-4235', 'Galle', 'Hikkaduwa', 2),
+    //   createData('NQ-2211', 'Elpitiya', 'Karapitiye', 4),
+    //   createData('NP-6063', 'Rathgama' , 'Hikkaduwa', 3),
+    //   createData('NQ-4411', 'Dodangoda', 'Galle' , 5),
+    // ];
+
     const classes = useStyles();
 
     return(
@@ -98,12 +100,12 @@ const ViewBus = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => (
+                                {busList.map((row) => (
                                     <StyledTableRow key={row.bus_no}>
-                                        <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.bus_no}</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.bus_number}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_start}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_end}</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">{row.conductor}</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center">{row.conductor_id == null ? "Not Assigned" : row.conductor_id}</StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
@@ -114,6 +116,5 @@ const ViewBus = () => {
         </Fragment>
     );
 };
-
 
 export default ViewBus;

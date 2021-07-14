@@ -1,6 +1,6 @@
 import { Button, Grid } from '@material-ui/core';
 import { toast } from 'react-toastify';
-import React, { Fragment, useState ,Component } from 'react';
+import React, { Fragment, useState ,Component , useEffect} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -16,20 +16,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../style/updatebus.css';
 import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
+import UpdateSingleBus from './updateSIngleBus';
 
 toast.configure();
-
-    function createData(bus_no, route_start, route_end, conductor) {
-        return { bus_no, route_start, route_end, conductor };
-    }
-    
-    const rows = [
-        createData('NP-6566', 'Galle','Wackwella', 1),
-        createData('NQ-4235', 'Galle', 'Hikkaduwa', 2),
-        createData('NQ-2211', 'Elpitiya', 'Karapitiye', 4),
-        createData('NP-6063', 'Rathgama' , 'Hikkaduwa', 3),
-        createData('NQ-4411', 'Dodangoda', 'Galle' , 5),
-    ];
 
     const StyledTableCell = withStyles((theme) => ({
         head: {
@@ -77,6 +66,37 @@ toast.configure();
 
 const UpdateBus = () => {
 
+    const [busList, setBusList] = useState([]);
+
+    async function getBusses() {
+      const res = await fetch("http://localhost:5000/busses");
+
+      const busArray = await res.json();
+
+      setBusList(busArray);
+
+      //console.log(busArray);
+    }
+
+    useEffect(() => {
+      getBusses();
+    }, []);
+
+    console.log(busList);
+
+    // /* dummy data */
+    // function createData(bus_no, route_start, route_end, conductor) {
+    //     return { bus_no, route_start, route_end, conductor };
+    // }
+    
+    // const rows = [
+    //     createData('NP-6566', 'Galle','Wackwella', 1),
+    //     createData('NQ-4235', 'Galle', 'Hikkaduwa', 2),
+    //     createData('NQ-2211', 'Elpitiya', 'Karapitiye', 4),
+    //     createData('NP-6063', 'Rathgama' , 'Hikkaduwa', 3),
+    //     createData('NQ-4411', 'Dodangoda', 'Galle' , 5),
+    // ];
+
     const classes = useStyles();
 
     return(
@@ -100,12 +120,12 @@ const UpdateBus = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => (
+                                {busList.map((row) => (
                                     <StyledTableRow key={row.bus_no}>
-                                        <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.bus_no}</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.bus_number}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_start}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_end}</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">{row.conductor}</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center">{row.conductor_id == null ? "Not Assigned" : row.conductor_id}</StyledTableCell>
                                         <StyledTableCell className={classes.cellAction} align="center"><EditIcon /></StyledTableCell>
                                         <StyledTableCell className={classes.cellAction} align="center" width='10px' height='10px'><CancelIcon /></StyledTableCell>
                                     </StyledTableRow>
