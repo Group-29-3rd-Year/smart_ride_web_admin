@@ -8,7 +8,7 @@ router.post("/add", async (req, res) => {
     const { number, start, end } = req.body;
 
     //2. check if bus exist (if bus exist then throw error)
-    const bus = await pool.query("SELECT * FROM bus WHERE bus_number = $1", [
+    const bus = await pool.query("SELECT * FROM bus WHERE bus_number = $1 AND is_running='1'", [
       number,
     ]);
 
@@ -41,7 +41,7 @@ router.get("/", async (req, res) => {
   try {
     //1. select query for view all busses in our database
     const busses = await pool.query(
-      "SELECT bus_number, route_start, route_end, conductor_id FROM bus WHERE is_running= '1'"
+      "SELECT bus_id, bus_number, route_start, route_end, conductor_id FROM bus WHERE is_running= '1'"
     ); 
     //console.log(busses);
     //2. check busses in the database
@@ -54,6 +54,28 @@ router.get("/", async (req, res) => {
     console.error(err.message);
     res.status(500).send("Server error");
   }
+});
+
+router.get("/singlebus/:bus_id", async (req, res) => {
+  try {
+    //1. select query for view single bus in our database
+    let id = req.params.bus_id;
+
+    const busses = await pool.query(
+      "SELECT bus_id, bus_number, route_start, route_end, conductor_id FROM bus WHERE bus_id= $1",
+      [id]
+    ); 
+    //console.log(busses); 
+    //2. check busses in the database
+    if (busses.rows.length === 0) {
+      return res.status(401).json("No any bus in the database.");
+    }
+
+    res.json(busses.rows);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  } 
 });
 
 router.put("/update/:bus_id", async (req, res) => {

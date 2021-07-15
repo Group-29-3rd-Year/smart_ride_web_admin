@@ -13,7 +13,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Header from '../widget/header';
 import SideNav from '../widget/sidenav';
 import 'react-toastify/dist/ReactToastify.css';
-import CancelIcon from '@material-ui/icons/Cancel';
+import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import '../style/viewhalt.css';
 
 toast.configure();
@@ -51,7 +51,7 @@ toast.configure();
             width: 106,
             height: 50,
             //align: "center",
-            cursor: "pointer"
+            cursor: "pointer",
         },
 
         noCell: {
@@ -138,7 +138,7 @@ const ViewHalt = () => {
                                                 <StyledTableRow key={row.halt_id}>
                                                     <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.halt_id}</StyledTableCell>
                                                     <StyledTableCell className={classes.cell} align="center">{row.halt_name}</StyledTableCell>
-                                                    <StyledTableCell className={classes.cellAction} align="right"  height='5px' onClick={() => deleteHalt(row.halt_id)}><CancelIcon /></StyledTableCell>
+                                                    <StyledTableCell className={classes.cellAction}  align="right"  height='5px' onClick={() => deleteHalt(row.halt_id)}><DeleteSweepIcon /></StyledTableCell>
                                                 </StyledTableRow>
                                             ))}
                                     </TableBody>

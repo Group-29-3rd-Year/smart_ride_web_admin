@@ -58,9 +58,6 @@ const ViewBus = () => {
 
       setBusList(busArray);
        
-      if(busArray){
-        console.log("True");
-      }
       //console.log(busArray);
     }
 

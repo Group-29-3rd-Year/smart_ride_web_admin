@@ -9,6 +9,8 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import MapIcon from '@material-ui/icons/Map';
 import ListIcon from '@material-ui/icons/List';
 import StreetviewIcon from '@material-ui/icons/Streetview';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 import { makeStyles } from '@material-ui/core/styles';
 import './sidenav.css';
 import { Button } from '@material-ui/core';
@@ -194,6 +196,24 @@ const SideNav = ({ setAuth }) => {
                                     <MapIcon />
                                 </div>
                                 Route Map
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" className="menu-item">
+                                <div className="menu-icon">
+                                    <TrendingUpIcon />
+                                </div>
+                                Fare Rates
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" className="menu-item">
+                                <div className="menu-icon">
+                                    <EqualizerIcon />
+                                </div>
+                                Stats
                             </a>
                         </li>
                     </ul>
