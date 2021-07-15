@@ -18,6 +18,7 @@ import SideNav from './components/widget/sidenav';
 import Header from './components/widget/header';
 import { parse } from 'ipaddr.js';
 import UpdateBus from './components/pages/updateBus';
+import UpdateSingleBus from './components/pages/updateSingleBus';
 import ViewBus from './components/pages/viewBus';
 import AddHalt from './components/pages/addHalt';
 import ViewHalt from './components/pages/viewHalt';
@@ -112,6 +113,18 @@ function App() {
               render={props => 
                 isAuthenticated ? (
                   <UpdateBus {...props} setAuth={setAuth}/>
+                ) : (
+                  <Redirect to="/smartride/login" />
+                )
+              }
+            />
+
+            {/* updatesinglebus */}
+            <Route 
+              exact path="/updatesinglebus/:id" 
+              render={props => 
+                isAuthenticated ? (
+                  <UpdateSingleBus {...props} setAuth={setAuth}/>
                 ) : (
                   <Redirect to="/smartride/login" />
                 )

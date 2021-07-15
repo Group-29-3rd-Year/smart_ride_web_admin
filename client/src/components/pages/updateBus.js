@@ -15,8 +15,9 @@ import SideNav from '../widget/sidenav';
 import 'react-toastify/dist/ReactToastify.css';
 import '../style/updatebus.css';
 import EditIcon from '@material-ui/icons/Edit';
-import CancelIcon from '@material-ui/icons/Cancel';
-import UpdateSingleBus from './updateSIngleBus';
+import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
+import updateSingleBus from './updateSingleBus';
+import { Link } from 'react-router-dom';
 
 toast.configure();
 
@@ -49,7 +50,7 @@ toast.configure();
         },
 
         cellActionHead: {
-            width: 60,
+            width: 120,
             height: 50
         },
 
@@ -58,9 +59,15 @@ toast.configure();
             height: 50,
             align: "left",
             cursor: "pointer"
-        }
+        },
 
-        
+        cellActionLink: {
+            width: 60,
+            height: 50,
+            align: "left",
+            cursor: "pointer",
+            color: 'balck'
+        }
 
     });
 
@@ -139,8 +146,8 @@ const UpdateBus = () => {
                                     <StyledTableCell className={classes.cell} align="center">Route Start</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Route End</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Conductor</StyledTableCell>
-                                    <StyledTableCell className={classes.cellActionHead} align="center"></StyledTableCell>
-                                    <StyledTableCell className={classes.cellActionHead} align="center"></StyledTableCell>
+                                    <StyledTableCell className={classes.cellActionHead} align="center">Action</StyledTableCell>
+                                    {/* <StyledTableCell className={classes.cellActionHead} align="center"></StyledTableCell> */}
                                     {/* <StyledTableCell className={classes.cell} align="center">Delete</StyledTableCell> */}
                                 </TableRow>
                             </TableHead>
@@ -151,8 +158,8 @@ const UpdateBus = () => {
                                         <StyledTableCell className={classes.cell} align="center">{row.route_start}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_end}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.conductor_id == null || '0' ? "Not Assigned" : row.conductor_id}</StyledTableCell>
-                                        <StyledTableCell className={classes.cellAction} align="center" ><UpdateSingleBus /></StyledTableCell>
-                                        <StyledTableCell className={classes.cellAction} align="right"  height='5px' onClick={() => deleteBus(row.bus_id)}><CancelIcon /></StyledTableCell>
+                                        <StyledTableCell className={classes.cellActionLink} align="center" ><Link style={{ color: '#000000' }} to={`updatesinglebus/${row.bus_id}`}><EditIcon /></Link></StyledTableCell>
+                                        <StyledTableCell className={classes.cellAction} align="right"  height='5px' onClick={() => deleteBus(row.bus_id)}><DeleteSweepIcon /></StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
