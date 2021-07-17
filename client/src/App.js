@@ -22,6 +22,7 @@ import UpdateSingleBus from './components/pages/updateSingleBus';
 import ViewBus from './components/pages/viewBus';
 import AddHalt from './components/pages/addHalt';
 import ViewHalt from './components/pages/viewHalt';
+import ViewConductor from './components/pages/viewConductor';
 
 function App() {
 
@@ -166,6 +167,19 @@ function App() {
                 )
               }
             />
+
+            {/* viewconductor */}
+            <Route 
+              exact path="/viewconductor" 
+              render={props => 
+                isAuthenticated ? (
+                  <ViewConductor {...props} setAuth={setAuth}/>
+                ) : (
+                  <Redirect to="/smartride/login" />
+                )
+              }
+            />
+
           </Switch>
         </div>
       </Router>
