@@ -148,7 +148,7 @@ const SideNav = ({ setAuth }) => {
                                         </a>
                                     </li>
                                     <li>
-                                        <a className="sub-menu-item">
+                                        <a className="sub-menu-item" onClick={() => {history.push("../viewconductor");}}>
                                             <div className="menu-icon">
                                                 <RemoveIcon />
                                             </div>

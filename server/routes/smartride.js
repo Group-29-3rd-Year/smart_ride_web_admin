@@ -51,7 +51,7 @@ router.post("/login", validInfo, async (req, res) => {
 
     //2. check if user dosen't exist(if not then thrwo error)
 
-    const user = await pool.query("SELECT * FROM users WHERE user_email= $1", [
+    const user = await pool.query("SELECT * FROM users WHERE user_email= $1 AND is_admin='1'", [
       email
     ]);
 

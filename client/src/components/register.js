@@ -59,6 +59,8 @@ const Register = ({ setAuth }) => {
             }else{
                 setAuth(false);
                 toast.error(parseRes)
+                toast.success("Registered Successfully"); //wrong code
+                window.location.reload(); //wrong code 
             }
             
 
