@@ -138,7 +138,7 @@ const UpdateSingleBus = (props) => {
                                     ))}
                                 </Select> */}
                                 <input 
-                                    type="text" 
+                                    type="number" 
                                     name="start" 
                                     id={start} 
                                     placeholder="Route Start"
@@ -160,7 +160,7 @@ const UpdateSingleBus = (props) => {
                                     ))}
                                 </Select> */}
                                 <input 
-                                    type="text" 
+                                    type="number" 
                                     name="end" 
                                     id={end} 
                                     placeholder="Route End"

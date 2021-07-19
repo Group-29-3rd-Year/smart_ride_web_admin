@@ -155,4 +155,5 @@ router.put("/profileUpdate/:user_id", authorizationForProfile, validInfo, async 
     }
   }
 );
+
 module.exports = router;
