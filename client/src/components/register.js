@@ -55,11 +55,11 @@ const Register = ({ setAuth }) => {
                 localStorage.setItem("token", parseRes.token);
                 setAuth(true);
 
-                toast.success("Registered Successfully");
+                //toast.success("Registered Successfully");
             }else{
                 setAuth(false);
                 toast.error(parseRes)
-                toast.success("Registered Successfully"); //wrong code
+                //toast.success("Registered Successfully"); //wrong code
                 window.location.reload(); //wrong code 
             }
             

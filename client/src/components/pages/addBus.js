@@ -85,7 +85,7 @@ const AddBus = () => {
                             <div className="col-75">
                                 <label>Route Start</label>
                                 <input 
-                                    type="text" 
+                                    type="number" 
                                     name="start" 
                                     placeholder="Route Start"
                                     value={start}
@@ -99,7 +99,7 @@ const AddBus = () => {
                             <div className="col-75">
                                 <label>Route End</label>
                                 <input 
-                                    type="text" 
+                                    type="number" 
                                     name="end" 
                                     placeholder="Route End"
                                     value={end}
