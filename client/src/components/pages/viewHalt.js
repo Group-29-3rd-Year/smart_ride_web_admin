@@ -39,24 +39,19 @@ toast.configure();
 
       const useStyles = makeStyles({
         table: {
-          minWidth: 360,
+          minWidth: 500,
         },
 
         cell: {
-            width: 150,
+            width: 200,
             height: 50
         },
 
         cellAction: {
-            width: 106,
+            width: 100,
             height: 50,
             //align: "center",
             cursor: "pointer",
-        },
-
-        noCell: {
-            width: 360,
-            height: 50
         }
       });
 
@@ -138,7 +133,7 @@ const ViewHalt = () => {
                                                 <StyledTableRow key={row.halt_id}>
                                                     <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.halt_id}</StyledTableCell>
                                                     <StyledTableCell className={classes.cell} align="center">{row.halt_name}</StyledTableCell>
-                                                    <StyledTableCell className={classes.cellAction}  align="right"  height='5px' onClick={() => deleteHalt(row.halt_id)}><DeleteSweepIcon /></StyledTableCell>
+                                                    <StyledTableCell className={classes.cellAction}  align="right"  height='5px' style={{ color: '#FF0000' }} onClick={() => deleteHalt(row.halt_id)}><DeleteSweepIcon /></StyledTableCell>
                                                 </StyledTableRow>
                                             ))}
                                     </TableBody>
