@@ -49,6 +49,29 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+router.get("/:halt_id", async (req, res) => {
+  try {
+    //   res.json(req.bus.user);
+    let id = req.params.halt_id;
+
+    //1. select query for view all busses in our database
+    const halt = await pool.query("SELECT halt_name FROM halt WHERE halt_id = $1",
+        [ id ]  
+    );
+
+    //2. check busses in the database
+    if (halt.rows.length === 0) {
+      return res.status(401).json("Haven't match halt for selected bus.");
+    }
+
+    res.json(halt.rows);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 router.put("/delete/:halt_id", async (req, res) => {
   try {
     //   res.json(req.bus.user);

@@ -158,8 +158,8 @@ const UpdateBus = () => {
                                         <StyledTableCell className={classes.cell} align="center">{row.route_start}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_end}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.conductor_id == null || '0' ? "Not Assigned" : row.conductor_id}</StyledTableCell>
-                                        <StyledTableCell className={classes.cellActionLink} align="center" ><Link style={{ color: '#000000' }} to={`updatesinglebus/${row.bus_id}`}><EditIcon /></Link></StyledTableCell>
-                                        <StyledTableCell className={classes.cellAction} align="right"  height='5px' onClick={() => deleteBus(row.bus_id)}><DeleteSweepIcon /></StyledTableCell>
+                                        <StyledTableCell className={classes.cellActionLink} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesinglebus/${row.bus_id}`}><EditIcon /></Link></StyledTableCell>
+                                        <StyledTableCell className={classes.cellAction} align="right"  height='5px' style={{ color: '#FF0000' }} onClick={() => deleteBus(row.bus_id)}><DeleteSweepIcon /></StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
