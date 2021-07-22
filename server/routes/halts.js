@@ -16,17 +16,17 @@ router.post("/add", async (req, res) => {
     if (halt.rows.length !== 0) {
       return res.status(401).send("Halt already exists");
     }
-
+ 
     //4. enter new bus inside our database
     const newHalt = await pool.query(
       "INSERT INTO halt (halt_name) VALUES ( $1 ) RETURNING *",
       [halt_name]
-    );
+    ); 
 
     if (newHalt) {
       res.json("Halt was added.");
     }
-  } catch (err) {
+  } catch (err) { 
     console.error(err.message);
     res.status(500).send("Server error");
   }
@@ -35,7 +35,7 @@ router.post("/add", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     //1. select query for view all busses in our database
-    const halts = await pool.query("SELECT halt_id, halt_name FROM halt");
+    const halts = await pool.query("SELECT halt_id, halt_name FROM halt ORDER BY halt_id ASC");
 
     //2. check busses in the database
     if (halts.rows.length === 0) {

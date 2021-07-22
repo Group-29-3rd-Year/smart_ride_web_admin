@@ -50,23 +50,24 @@ toast.configure();
 const ViewBus = () => {
 
     const [busList, setBusList] = useState([]);
+    //const [busNewList, setBusNewList] = useState([]);
 
     async function getBusses() {
       const res = await fetch("http://localhost:5000/busses");
 
       const busArray = await res.json();
 
-      setBusList(busArray);
-       
-      //console.log(busArray);
+        setBusList(busArray);
+      
+        console.log(busArray);
     }
 
     useEffect(() => {
       getBusses();
     }, []);
 
-    console.log(busList);
-
+    
+    
     // /* dummmy data */
     // function createData(bus_no, route_start, route_end, conductor_id) {
     //   return { bus_no, route_start, route_end, conductor_id };
@@ -100,7 +101,6 @@ const ViewBus = () => {
                                 </TableRow>
                             </TableHead>
 
-                            
                               <TableBody>
                                 {busList.map((row) => (
                                     <StyledTableRow key={row.bus_no}>
@@ -112,7 +112,7 @@ const ViewBus = () => {
                                 ))}
                               </TableBody>
                             
-                            
+                              
                         </Table>
                     </TableContainer>
                 </div>

@@ -73,18 +73,37 @@
     background-color: royalblue;
 }
 
-.add_bus_container button {
+.add_bus_container .btn_box {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.add_bus_container .bus_update_btn {
     padding: 10px 20px;
-    background-color: dodgerblue;
+    background-color: green;
     border: 1px solid #ddd;
     color: white;
     cursor: pointer;
     border-radius: 20px;
-    margin-left: 100px;
-    margin-top: 20px;
+    
     font-weight: bold;
     font-size: large;
 }
+
+.add_bus_container .bus_cancel_btn {
+    padding: 10px 20px;
+    background-color: red;
+    border: 1px solid #ddd;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: large;
+}
+
+
 
 @media (max-width: 800px) {
     .add_bus_container input {

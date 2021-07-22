@@ -42,6 +42,8 @@ const UpdateSingleBus = (props) => {
     const[busPrevEnd, setPrevBusEnd] = useState([]);
     const[busPrevStartName, setPrevBusStartName] = useState([]);
     const[busPrevEndName, setPrevBusEndName] = useState([]);
+    const[busNewStart, setNewBusStart] = useState([]);
+    const[busNewEnd, setNewBusEnd] = useState([]);
     //console.log(props.match.params.id);
     //let bus = [];
     
@@ -72,7 +74,7 @@ const UpdateSingleBus = (props) => {
             const res_end = await fetch(`http://localhost:5000/halts/${busPrevEnd}`);
             const bus_end = await res_end.json();
 
-            setPrevBusStartName(bus_end[0].halt_name);
+            setPrevBusEndName(bus_end[0].halt_name);
 
             //console.log(bus_end[0].halt_name);
         }
@@ -93,15 +95,24 @@ const UpdateSingleBus = (props) => {
     const [inputs, setInputs] = useState({
         
         number: "",
-        start: "",
-        end: "",
+        // start: "",
+        // end: ""
+        
     });
 
-   const {number, start, end} = inputs;
+   const {number} = inputs;
 
     const onChange = (e) => {
         setInputs({...inputs, [e.target.name]
         : e.target.value})
+    };
+
+    const startChange = (event) => {
+        setNewBusStart(event.target.value);
+    };
+
+    const endChange = (event) => {
+        setNewBusEnd(event.target.value);
     };
 
     const onSubmitForm = async (e) => {
@@ -109,11 +120,11 @@ const UpdateSingleBus = (props) => {
 
         try {
 
-            const body = {number, start, end};
-            // console.log(props.match.params.id)
-            // console.log(number);
-            // console.log(start);
-            // console.log(end);
+            const body = {number, busNewStart, busNewEnd};
+            console.log(props.match.params.id)
+            console.log(number);
+            console.log(busNewStart);
+            console.log(busNewEnd);
             const response = await fetch(`http://localhost:5000/busses/update/${props.match.params.id}`, {
                 method: "PUT",
                 headers: {"Content-Type" : "application/json"},
@@ -170,54 +181,44 @@ const UpdateSingleBus = (props) => {
                         <div className="add-form-row">
                             <div className="col-75">
                                 <label>Route Start</label>
-                                <Select className={classes.selectEmpty}>
-                                    <MenuItem value={busPrevStart}><em>{busPrevStart}{'-'}{busPrevStartName}</em></MenuItem>
+                                <Select 
+                                    className={classes.selectEmpty}
+                                    value={busNewStart}
+                                    onChange = {startChange}
+                                    required
+                                >
+                                    <MenuItem value={busPrevStart}><em>{busPrevStart}{' - '}{busPrevStartName}</em></MenuItem>
                                     {haltList.map((halt1) => ( 
-                                    <MenuItem name={start} value={halt1.halt_id}>{halt1.halt_name}</MenuItem>
+                                    <MenuItem value={halt1.halt_id}>{halt1.halt_id}{' - '}{halt1.halt_name}</MenuItem>
                                     ))}
                                 </Select>
-                                {/* <input 
-                                    type="number" 
-                                    name="start" 
-                                    id={start} 
-                                    placeholder="Route Start"
-                                    //value={busStart}
-                                    defaultValue={busPrevStart}
-                                    onChange = {e => onChange(e)}
-                                    required
-                                /> */}
+                               
                             </div>
                         </div>
 
                         <div className="add-form-row">
                             <div className="col-75">
                                 <label>Route End</label>
-                                {/* <Select className={classes.selectEmpty}>
-                                    <MenuItem value="0"><em>None</em></MenuItem>
-                                    {haltList.map((halt2) => (
-                                    <MenuItem name={end} value={halt2.halt_id}>{halt2.halt_name}</MenuItem>
-                                    ))}
-                                </Select> */}
-                                <input 
-                                    type="number" 
-                                    name="end" 
-                                    id={end} 
-                                    placeholder="Route End"
-                                    //value={end}
-                                    defaultValue={busPrevEnd}
-                                    onChange = {e => onChange(e)}
+                                <Select 
+                                    className={classes.selectEmpty}
+                                    value={busNewEnd}
+                                    onChange = {endChange}
                                     required
-                                />
+                                >
+                                    <MenuItem value={busPrevEnd}><em>{busPrevEnd}{' - '}{busPrevEndName}</em></MenuItem>
+                                    {haltList.map((halt2) => (
+                                    <MenuItem value={halt2.halt_id}>{halt2.halt_id}{' - '}{halt2.halt_name}</MenuItem>
+                                    ))}
+                                </Select>
+                                
                             </div>
                         </div>
 
-                        <button>Update</button>
-                        {/* <div className="login">
-                            <h4><b>Have Account ?</b></h4>
-                            <div className="login-link">
-                                <Link to="/smartride/login" style={{ textDecoration: 'none', color: '#1e90ff' }} >Here</Link>
-                            </div>
-                        </div> */}
+                        <div className="btn_box">
+                            <button className="bus_update_btn">Update</button>
+                        </div>
+                        
+                        
                     </form>
                         
                     </div>
