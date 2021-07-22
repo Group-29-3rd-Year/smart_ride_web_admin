@@ -81,14 +81,14 @@ router.get("/singlebus/:bus_id", async (req, res) => {
 router.put("/update/:bus_id", async (req, res) => {
   try {
     //   1. destructure the req.body
-    const { number, start, end } = req.body;
+    const { number, busNewStart, busNewEnd } = req.body;
 
     //   res.json(req.bus.user);
     let id = req.params.bus_id;
 
     const updateBus = await pool.query(
       "UPDATE bus SET bus_number = $1, route_start = $2, route_end = $3  WHERE bus_id = $4",
-      [number, start, end,  id]
+      [number, busNewStart, busNewEnd,  id]
     );
 
     if (updateBus) {

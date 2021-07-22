@@ -133,7 +133,7 @@ const ViewHalt = () => {
                                                 <StyledTableRow key={row.halt_id}>
                                                     <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.halt_id}</StyledTableCell>
                                                     <StyledTableCell className={classes.cell} align="center">{row.halt_name}</StyledTableCell>
-                                                    <StyledTableCell className={classes.cellAction}  align="right"  height='5px' style={{ color: '#FF0000' }} onClick={() => deleteHalt(row.halt_id)}><DeleteSweepIcon /></StyledTableCell>
+                                                    <StyledTableCell className={classes.cellAction}  align="right"  height='5px' style={{ color: '#FF0000' }} onClick={() => { if (window.confirm('Are you sure to delete this ?')) deleteHalt(row.halt_id) } }><DeleteSweepIcon /></StyledTableCell>
                                                 </StyledTableRow>
                                             ))}
                                     </TableBody>

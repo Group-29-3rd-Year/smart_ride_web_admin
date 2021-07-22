@@ -175,19 +175,17 @@ const AddBus = () => {
                                 >
                                     <MenuItem value="0"><em>None</em></MenuItem>
                                     {haltList.map((halt2) => ( 
-                                    <MenuItem name={start} value={halt2.halt_id}>{halt2.halt_id}{" - "}{halt2.halt_name}</MenuItem>
+                                    <MenuItem  value={halt2.halt_id}>{halt2.halt_id}{" - "}{halt2.halt_name}</MenuItem>
                                     ))}
                                 </Select>
                             </div>
                         </div>
 
-                        <button>Register</button>
-                        {/* <div className="login">
-                            <h4><b>Have Account ?</b></h4>
-                            <div className="login-link">
-                                <Link to="/smartride/login" style={{ textDecoration: 'none', color: '#1e90ff' }} >Here</Link>
-                            </div>
-                        </div> */}
+                        <div className="btn_box">
+                            <button className="bus_update_btn">Register</button>
+                        </div>
+                        
+                        
                     </form>
                         
                     </div>
