@@ -13,8 +13,10 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Header from '../widget/header';
 import SideNav from '../widget/sidenav';
+import EditIcon from '@material-ui/icons/Edit';
 import 'react-toastify/dist/ReactToastify.css';
-import '../style/viewconductor.css';
+import '../style/updateconductor.css';
+import { Link } from 'react-router-dom';
 
 toast.configure();
 
@@ -39,15 +41,26 @@ toast.configure();
 
       const useStyles = makeStyles({
         table: {
-          minWidth: 800,
+          minWidth: 700,
         },
 
         cell: {
-            width: 200,
+            width: 150,
+            height: 50,
+        },
+
+        cellAction: {
+            width: 100,
+            height: 50,
+        },
+
+        cellActionLink: {
+            width: 100,
+            height: 50,
         }
       });
 
-const ViewConductor = () => {
+const UpdateConductor = () => {
 
     const [conList, setConList] = useState([]);
     const [conListTwo, setConListTwo] = useState([]);
@@ -78,7 +91,6 @@ const ViewConductor = () => {
         getConductors();
         getConductorsTwo();
     }, []);
-
     const classes = useStyles();
 
     return(
@@ -95,7 +107,8 @@ const ViewConductor = () => {
                                     <StyledTableCell className={classes.cell} align="center">Name</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Phone No</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Email</StyledTableCell>
-                                    <StyledTableCell className={classes.cell} align="center">Bus</StyledTableCell>
+                                    <StyledTableCell className={classes.cell} align="center">Bus No</StyledTableCell>
+                                    <StyledTableCell className={classes.cellAction} align="center">Action</StyledTableCell>
                                 </TableRow>
                             </TableHead>
 
@@ -106,6 +119,7 @@ const ViewConductor = () => {
                                         <StyledTableCell className={classes.cell} align="center">{row.phone_number}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.user_email}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.bus_number}</StyledTableCell>
+                                        <StyledTableCell className={classes.cellActionLink} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesingleconductor/${row.user_id}`}><EditIcon /></Link></StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                                 {conListTwo.map((row) => (
@@ -114,6 +128,7 @@ const ViewConductor = () => {
                                         <StyledTableCell className={classes.cell} align="center">{row.phone_number}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.user_email}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">Not Assigned</StyledTableCell>
+                                        <StyledTableCell className={classes.cellActionLink} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesingleconductor/${row.user_id}`}><EditIcon /></Link></StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
@@ -125,4 +140,4 @@ const ViewConductor = () => {
     )
 };
 
-export default ViewConductor;
+export default UpdateConductor;

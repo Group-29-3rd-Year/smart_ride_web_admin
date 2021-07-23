@@ -140,7 +140,7 @@ const SideNav = ({ setAuth }) => {
                                         </a>
                                     </li> */}
                                     <li>
-                                        <a className="sub-menu-item">
+                                        <a className="sub-menu-item" onClick={() => {history.push("../updateconductor");}}>
                                             <div className="menu-icon">
                                                 <UpdateIcon />
                                             </div>

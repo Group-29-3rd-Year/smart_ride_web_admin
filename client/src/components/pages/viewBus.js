@@ -50,6 +50,8 @@ toast.configure();
 const ViewBus = () => {
 
     const [busList, setBusList] = useState([]);
+    // const [busStartHalt, setBusStartHalt] = useState([]);
+    // const [busEndHalt, setBusEndHalt] = useState([]);
     //const [busNewList, setBusNewList] = useState([]);
 
     async function getBusses() {
@@ -58,12 +60,37 @@ const ViewBus = () => {
       const busArray = await res.json();
 
         setBusList(busArray);
-      
         console.log(busArray);
-    }
+        // for(let i=0 ; i < busArray.length ; i++) {
+        //   //console.log(busArray[i].route_start);
+        //   const startName =  getStartHaltName(busArray[i].route_start);
+        //   const endName = getEndHaltName(busArray[i].route_end);
+
+        //   setBusStartHalt(startName);
+        //   setBusEndHalt(endName);
+        // }
+    };
+
+    // async function getStartHaltName(startId) {
+    //   const startHaltName = await fetch(`http://localhost:5000/halts/${startId}`);
+
+    //   const startHaltArray = await startHaltName.json();
+      
+    //   //setBusStartHalt(startHaltArray);
+    // };
+
+    // async function getEndHaltName(endId) {
+    //   const endHaltName = await fetch(`http://localhost:5000/halts/${endId}`);
+
+    //   const endHaltArray = await endHaltName.json();
+      
+    //   //setBusEndHalt(endHaltArray);
+    // }
 
     useEffect(() => {
       getBusses();
+      // getStartHaltName();
+      // getEndHaltName();
     }, []);
 
     
@@ -107,7 +134,7 @@ const ViewBus = () => {
                                         <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.bus_number}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_start}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_end}</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">{row.conductor_id == null || '0' ? "Not Assigned" : row.conductor_id}</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center">{(row.conductor_id === 0) ? "Not Assigned" : row.conductor_id}</StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                               </TableBody>

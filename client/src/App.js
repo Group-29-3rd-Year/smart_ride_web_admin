@@ -23,6 +23,8 @@ import ViewBus from './components/pages/viewBus';
 import AddHalt from './components/pages/addHalt';
 import ViewHalt from './components/pages/viewHalt';
 import ViewConductor from './components/pages/viewConductor';
+import UpdateConductor from './components/pages/updateConductor';
+import UpdateSingleConductor from './components/pages/updateSingleConductor';
 
 function App() {
 
@@ -174,6 +176,30 @@ function App() {
               render={props => 
                 isAuthenticated ? (
                   <ViewConductor {...props} setAuth={setAuth}/>
+                ) : (
+                  <Redirect to="/smartride/login" />
+                )
+              }
+            />
+
+            {/* updateconductor */}
+            <Route 
+              exact path="/updateconductor" 
+              render={props => 
+                isAuthenticated ? (
+                  <UpdateConductor {...props} setAuth={setAuth}/>
+                ) : (
+                  <Redirect to="/smartride/login" />
+                )
+              }
+            />
+
+            {/* updatesingleconductor */}
+            <Route 
+              exact path="/updatesingleconductor/:id" 
+              render={props => 
+                isAuthenticated ? (
+                  <UpdateSingleConductor {...props} setAuth={setAuth}/>
                 ) : (
                   <Redirect to="/smartride/login" />
                 )

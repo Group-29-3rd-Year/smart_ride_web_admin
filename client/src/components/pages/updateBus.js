@@ -75,6 +75,8 @@ toast.configure();
 const UpdateBus = () => {
 
     const [busList, setBusList] = useState([]);
+    const [busstart, setBusStart] = useState([]);
+    const [busEnd, setBusEnd] = useState([]);
 
     async function getBusses() {
       const res = await fetch("http://localhost:5000/busses");
@@ -82,9 +84,14 @@ const UpdateBus = () => {
       const busArray = await res.json();
 
       setBusList(busArray);
+      setBusStart(busArray[0].route_start);
+      setBusEnd(busArray[0].route_end);
 
       //console.log(busArray);
     }
+
+    // console.log(busstart);
+    // console.log(busEnd);
 
     async function deleteBus(id) {
         console.log(id);
@@ -157,7 +164,7 @@ const UpdateBus = () => {
                                         <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{row.bus_number}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_start}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_end}</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">{row.conductor_id == null || '0' ? "Not Assigned" : row.conductor_id}</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center">{(row.conductor_id == 0) ? "Not Assigned" : row.conductor_id}</StyledTableCell>
                                         <StyledTableCell className={classes.cellActionLink} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesinglebus/${row.bus_id}`}><EditIcon /></Link></StyledTableCell>
                                         <StyledTableCell className={classes.cellAction} align="right"  height='5px' style={{ color: '#FF0000' }} onClick={() => { if (window.confirm('Are you sure to delete this ?')) deleteBus(row.bus_id) } } ><DeleteSweepIcon /></StyledTableCell>
                                     </StyledTableRow>
