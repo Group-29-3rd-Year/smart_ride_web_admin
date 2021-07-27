@@ -17,6 +17,9 @@ app.use("/busses", require("./routes/busses"));
 
 // crud for routes
 app.use("/halts", require("./routes/halts"));
+
+// crud for fares
+app.use("/fares", require("./routes/fares"));
  
 // crud for routes 
 app.use("/conductors", require("./routes/conductors"));
