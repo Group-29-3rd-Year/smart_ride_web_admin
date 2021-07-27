@@ -188,6 +188,41 @@ body {
   display: inline;
 }
 
+.side-menu .main-menu .sub-menu5 {
+  margin-left: 25px;
+  border-left: 1px solid #666;
+  font-weight: bold;
+  /* margin-bottom: 15px; */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-in;
+}
+
+.side-menu .main-menu .sub-menu5.active5{
+  max-height: 200px;
+}
+
+.side-menu .main-menu .sub-menu5 a {
+  margin: 5px 0;
+  display: inline;
+}
+
+.side-menu .main-menu .sub-menu5 .sub-menu-item {
+  margin: 5px 20px;
+  cursor: pointer;
+  display: inline;
+}
+
+.side-menu .main-menu .sub-menu5 .sub-menu-item .menu-icon {
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  display: inline;
+}
+
 .side-menu-footer {
   width: 100%;
   height: 50px;

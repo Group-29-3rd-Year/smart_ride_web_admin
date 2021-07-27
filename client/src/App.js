@@ -22,6 +22,7 @@ import UpdateSingleBus from './components/pages/updateSingleBus';
 import ViewBus from './components/pages/viewBus';
 import AddHalt from './components/pages/addHalt';
 import ViewHalt from './components/pages/viewHalt';
+import AddFare from './components/pages/addFare';
 import ViewConductor from './components/pages/viewConductor';
 import UpdateConductor from './components/pages/updateConductor';
 import UpdateSingleConductor from './components/pages/updateSingleConductor';
@@ -200,6 +201,18 @@ function App() {
               render={props => 
                 isAuthenticated ? (
                   <UpdateSingleConductor {...props} setAuth={setAuth}/>
+                ) : (
+                  <Redirect to="/smartride/login" />
+                )
+              }
+            />
+
+            {/* addfare */}
+            <Route 
+              exact path="/addfare" 
+              render={props => 
+                isAuthenticated ? (
+                  <AddFare {...props} setAuth={setAuth}/>
                 ) : (
                   <Redirect to="/smartride/login" />
                 )
