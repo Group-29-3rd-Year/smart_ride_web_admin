@@ -43,6 +43,8 @@ const SideNav = ({ setAuth }) => {
     const [expand1, setExpand1] = useState(false);
     const [expand2, setExpand2] = useState(false);
     const [expand3, setExpand3] = useState(false);
+    const [expand4, setExpand4] = useState(false);
+    const [expand5, setExpand5] = useState(false);
 
     const logout = (e) => {
         e.preventDefault()
@@ -200,12 +202,42 @@ const SideNav = ({ setAuth }) => {
                         </li>
 
                         <li>
-                            <a href="#" className="menu-item">
+                            <a onClick= {() => setExpand5(!expand5)} className="menu-item">
                                 <div className="menu-icon">
                                     <TrendingUpIcon />
                                 </div>
                                 Fare Rates
                             </a>
+                            <div className={`sub-menu5 ${expand5 ? "active5" : ""}`}>
+                                <ul>
+                                    <li>
+                                        <a className="sub-menu-item" onClick={() => {history.push("../addfare");}}>
+                                            {/* <Link to="../pages/addBus"></Link> */}
+                                            {/* <Route path="../pages/aadBus" component={AddBus} /> */}
+                                            <div className="menu-icon">
+                                                <AddIcon />
+                                            </div>
+                                            Add Fare Rates
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a className="sub-menu-item" onClick={() => {history.push("../updatefare");}}>
+                                            <div className="menu-icon">
+                                                <UpdateIcon />
+                                            </div>
+                                            Update/Delete Fare Rates
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a className="sub-menu-item" onClick={() => {history.push("../viewfare");}}>
+                                            <div className="menu-icon">
+                                                <RemoveIcon />
+                                            </div>
+                                            View Fare Rates
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
 
                         <li>
