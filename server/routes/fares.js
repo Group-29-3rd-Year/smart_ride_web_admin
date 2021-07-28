@@ -8,8 +8,8 @@ router.post("/add", async (req, res) => {
     const { fare_price,fare_km } = req.body;
 
     //2. check if fare exist (if fare exist then throw error)
-    const fare = await pool.query("SELECT * FROM fare WHERE fare_price = $1", [
-        fare_price,
+    const fare = await pool.query("SELECT * FROM fare WHERE fare_km = $1", [
+        fare_km,
     ]);
 
     if (fare.rows.length !== 0) {
