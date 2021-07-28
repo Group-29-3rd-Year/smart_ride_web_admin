@@ -24,7 +24,6 @@ import AddHalt from './components/pages/addHalt';
 import ViewHalt from './components/pages/viewHalt';
 import AddFare from './components/pages/addFare';
 import ViewFare from './components/pages/viewFare';
-import UpdateFare from './components/pages/updateFare';
 import UpdateSingleFare from './components/pages/updateSingleFare';
 import ViewConductor from './components/pages/viewConductor';
 import UpdateConductor from './components/pages/updateConductor';
