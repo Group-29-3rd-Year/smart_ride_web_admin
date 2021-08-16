@@ -56,7 +56,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:fare_id", async (req, res) => {
+router.get("/getsinglefare/:fare_id", async (req, res) => {
   try {
     //1. select query for view single bus in our database
     let id = req.params.fare_id;
@@ -80,18 +80,18 @@ router.get("/:fare_id", async (req, res) => {
 router.put("/update/:fare_id", async (req, res) => {
   try {
     //   1. destructure the req.body
-    const { fare_km, fareNewPrice } = req.body;
+    const {fareNewPrice } = req.body;
 
     //   res.json(req.bus.user);
     let id = req.params.fare_id;
 
     const updateFare = await pool.query(
-      "UPDATE fare SET fare_km = $1, fare_price = $2  WHERE fare_id = $3",
-      [fare_km, fareNewPrice, id]
+      "UPDATE fare SET fare_price = $1  WHERE fare_id = $2",
+      [fareNewPrice,id]
     );
 
     if (updateFare) {
-      res.json("Fare was updated");
+      res.json("Fare is updated");
     }
   } catch (err) {
     console.error(err.message);
@@ -99,22 +99,22 @@ router.put("/update/:fare_id", async (req, res) => {
   }
 });
 
-// router.put("/delete/:fare_id", async (req, res) => {
-//   try {
-//     let id = req.params.fare_id;
+router.put("/delete/:fare_id", async (req, res) => {
+   try {
+     let id = req.params.fare_id;
 
-//     const deleteFare = await pool.query(
-//       "UPDATE fare SET is_running = '0' WHERE fare_id = $1",
-//       [id]
-//     );
+     const deleteFare = await pool.query(
+       "DELETE FROM fare WHERE fare_id = $1",
+      [id]
+    );
  
-//     if (deleteBus) {
-//       res.json("Bus was deleted");
-//     } 
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send("Server error");
-//   }
-// });
+    if (deleteFare) {
+      res.json("Fare was deleted");
+    } 
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
 
 module.exports = router;
