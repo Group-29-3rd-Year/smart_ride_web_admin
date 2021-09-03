@@ -241,11 +241,11 @@ const SideNav = ({ setAuth }) => {
                         </li>
 
                         <li>
-                            <a href="#" className="menu-item">
+                            <a className="menu-item" onClick={() => {history.push("../chart");}}>
                                 <div className="menu-icon">
-                                    <EqualizerIcon />
+                                    <TableChartIcon />
                                 </div>
-                                Stats
+                                Stat
                             </a>
                         </li>
                     </ul>
