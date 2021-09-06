@@ -42,7 +42,7 @@ function App() {
   async function isAuth(){
     try {
       
-      const response  = await fetch("http://localhost:5000/smartride/is-verify", {
+      const response  = await fetch("http://localhost:5000/admin/smartride/is-verify", {
         method: "GET",
         headers: { token : localStorage.token }
       });

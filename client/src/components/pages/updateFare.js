@@ -73,7 +73,7 @@ const UpdateFare = () => {
     //const [conListTwo, setConListTwo] = useState([]);
 
     async function getFares() {
-        const res = await fetch("http://localhost:5000/fares");
+        const res = await fetch("http://localhost:5000/admin/fares");
 
         const fareArray = await res.json();
 
@@ -87,7 +87,7 @@ const UpdateFare = () => {
     async function deleteFare(id) {
         console.log(id);
         try {
-            const res = await fetch(`http://localhost:5000/fares/delete/${id}`, {
+            const res = await fetch(`http://localhost:5000/admin/fares/delete/${id}`, {
                 method: "PUT"
             });
 
@@ -110,7 +110,7 @@ const UpdateFare = () => {
 
 
     // async function getConductorsTwo() {
-    //     const res_two = await fetch("http://localhost:5000/conductors/two");
+    //     const res_two = await fetch("http://localhost:5000/admin/conductors/two");
 
     //     const conArrayTwo = await res_two.json();
 
