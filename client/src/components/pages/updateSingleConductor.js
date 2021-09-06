@@ -33,7 +33,7 @@ const UpdateSingleConductor = (props) => {
     console.log(props.match.params.id);
 
     async function getBusses() {
-        const res = await fetch("http://localhost:5000/conductors/getbusses");
+        const res = await fetch("http://localhost:5000/admin/conductors/getbusses");
   
         const busArray = await res.json();
   
@@ -44,7 +44,7 @@ const UpdateSingleConductor = (props) => {
 
 
     async function getConDetails() {
-        const det = await fetch(`http://localhost:5000/conductors/getsinglecon/${props.match.params.id}`);
+        const det = await fetch(`http://localhost:5000/admin/conductors/getsinglecon/${props.match.params.id}`);
 
         const conArray = await det.json();
 
@@ -72,7 +72,7 @@ const UpdateSingleConductor = (props) => {
 
             const body = {busNo};
             console.log(busNo);
-            const response = await fetch(`http://localhost:5000/conductors/update/${props.match.params.id}`, {
+            const response = await fetch(`http://localhost:5000/admin/conductors/update/${props.match.params.id}`, {
                 method: "PUT",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body)

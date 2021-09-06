@@ -55,7 +55,7 @@ const ViewBus = () => {
     //const [busNewList, setBusNewList] = useState([]);
 
     async function getBusses() {
-      const res = await fetch("http://localhost:5000/busses");
+      const res = await fetch("http://localhost:5000/admin/busses");
 
       const busArray = await res.json();
 
@@ -72,7 +72,7 @@ const ViewBus = () => {
     };
 
     // async function getStartHaltName(startId) {
-    //   const startHaltName = await fetch(`http://localhost:5000/halts/${startId}`);
+    //   const startHaltName = await fetch(`http://localhost:5000/admin/halts/${startId}`);
 
     //   const startHaltArray = await startHaltName.json();
       
@@ -80,7 +80,7 @@ const ViewBus = () => {
     // };
 
     // async function getEndHaltName(endId) {
-    //   const endHaltName = await fetch(`http://localhost:5000/halts/${endId}`);
+    //   const endHaltName = await fetch(`http://localhost:5000/admin/halts/${endId}`);
 
     //   const endHaltArray = await endHaltName.json();
       

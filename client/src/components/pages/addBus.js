@@ -30,7 +30,7 @@ const AddBus = () => {
     const [haltList, setHaltList] = useState([]);
 
     async function getHalts() {
-        const res = await fetch("http://localhost:5000/halts");
+        const res = await fetch("http://localhost:5000/admin/halts");
   
         const haltArray = await res.json();
   
@@ -74,7 +74,7 @@ const AddBus = () => {
             console.log(number);
             console.log(start);
             console.log(end);
-            const response = await fetch("http://localhost:5000/busses/add", {
+            const response = await fetch("http://localhost:5000/admin/busses/add", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body)

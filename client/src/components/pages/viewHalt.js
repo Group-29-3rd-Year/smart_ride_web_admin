@@ -72,7 +72,7 @@ const ViewHalt = () => {
     const [haltList, setHaltList] = useState([]);
 
     async function getHalts() {
-        const res = await fetch("http://localhost:5000/halts");
+        const res = await fetch("http://localhost:5000/admin/halts");
   
         const haltArray = await res.json();
   
@@ -82,7 +82,7 @@ const ViewHalt = () => {
 
     async function deleteHalt(id) {
         try {
-            const res = await fetch(`http://localhost:5000/halts/delete/${id}`, {
+            const res = await fetch(`http://localhost:5000/admin/halts/delete/${id}`, {
                 method: "PUT"
             });
 
