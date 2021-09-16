@@ -41,7 +41,7 @@ toast.configure();
 
       const useStyles = makeStyles({
         table: {
-          minWidth: 700,
+          maxWidth: 700,
         },
 
         cell: {
@@ -53,11 +53,6 @@ toast.configure();
             width: 100,
             height: 50,
         },
-
-        cellActionLink: {
-            width: 100,
-            height: 50,
-        }
       });
 
 const UpdateConductor = () => {
@@ -99,7 +94,7 @@ const UpdateConductor = () => {
                 <Header />
                 <SideNav />
 
-                <div className="view_conductor_container">
+                <div className="updateview_conductor_container">
                     <TableContainer component={Paper}>
                         <Table className={classes.table} aria-label="customized table">
                             <TableHead>
@@ -119,7 +114,7 @@ const UpdateConductor = () => {
                                         <StyledTableCell className={classes.cell} align="center">{row.phone_number}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.user_email}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.bus_number}</StyledTableCell>
-                                        <StyledTableCell className={classes.cellActionLink} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesingleconductor/${row.user_id}`}><EditIcon /></Link></StyledTableCell>
+                                        <StyledTableCell className={classes.cellAction} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesingleconductor/${row.user_id}`}><EditIcon /></Link></StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                                 {conListTwo.map((row) => (
@@ -128,7 +123,7 @@ const UpdateConductor = () => {
                                         <StyledTableCell className={classes.cell} align="center">{row.phone_number}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.user_email}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">Not Assigned</StyledTableCell>
-                                        <StyledTableCell className={classes.cellActionLink} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesingleconductor/${row.user_id}`}><EditIcon /></Link></StyledTableCell>
+                                        <StyledTableCell className={classes.cellAction} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesingleconductor/${row.user_id}`}><EditIcon /></Link></StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>

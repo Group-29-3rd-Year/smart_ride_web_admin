@@ -41,7 +41,7 @@ toast.configure();
 
     const useStyles = makeStyles({
         table: {
-          minWidth: 720,
+            maxWidth: 700,
         },
 
         cell: {
@@ -49,25 +49,19 @@ toast.configure();
             height: 50
         },
 
-        cellActionHead: {
-            width: 120,
-            height: 50
-        },
-
         cellAction: {
-            width: 60,
+            width: 50,
             height: 50,
-            align: "left",
+            //align: "left",
             cursor: "pointer"
         },
 
-        cellActionLink: {
-            width: 60,
+        cellActionIcon: {
+            width: 50,
             height: 50,
-            align: "left",
-            cursor: "pointer",
-            color: 'balck'
-        }
+            //align: "left",
+            cursor: "pointer"
+        },
 
     });
 
@@ -144,7 +138,7 @@ const UpdateBus = () => {
                 <Header />
                 <SideNav />
 
-                <div className="view_bus_container">
+                <div className="update_bus_container">
                     <TableContainer component={Paper}>
                         <Table className={classes.table} aria-label="customized table">
                             <TableHead>
@@ -153,9 +147,8 @@ const UpdateBus = () => {
                                     <StyledTableCell className={classes.cell} align="center">Route Start</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Route End</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Conductor</StyledTableCell>
-                                    <StyledTableCell className={classes.cellActionHead} align="center">Action</StyledTableCell>
-                                    {/* <StyledTableCell className={classes.cellActionHead} align="center"></StyledTableCell> */}
-                                    {/* <StyledTableCell className={classes.cell} align="center">Delete</StyledTableCell> */}
+                                    <StyledTableCell className={classes.cellAction} align="center"></StyledTableCell>
+                                    <StyledTableCell className={classes.cellAction} align="center"></StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -165,8 +158,8 @@ const UpdateBus = () => {
                                         <StyledTableCell className={classes.cell} align="center">{row.route_start}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.route_end}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{(row.conductor_id == 0) ? "Not Assigned" : row.conductor_id}</StyledTableCell>
-                                        <StyledTableCell className={classes.cellActionLink} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesinglebus/${row.bus_id}`}><EditIcon /></Link></StyledTableCell>
-                                        <StyledTableCell className={classes.cellAction} align="right"  height='5px' style={{ color: '#FF0000' }} onClick={() => { if (window.confirm('Are you sure to delete this ?')) deleteBus(row.bus_id) } } ><DeleteSweepIcon /></StyledTableCell>
+                                        <StyledTableCell className={classes.cellActionIcon} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesinglebus/${row.bus_id}`}><EditIcon /></Link></StyledTableCell>
+                                        <StyledTableCell className={classes.cellActionIcon} align="right"  height='5px' style={{ color: '#FF0000' }} onClick={() => { if (window.confirm('Are you sure to delete this ?')) deleteBus(row.bus_id) } } ><DeleteSweepIcon /></StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>

@@ -40,20 +40,13 @@ toast.configure();
 
       const useStyles = makeStyles({
         table: {
-          minWidth: 500,
+          maxWidth: 800,
         },
 
         cell: {
             width: 200,
             height: 50
         },
-
-        cellAction: {
-            width: 100,
-            height: 50,
-            //align: "center",
-            cursor: "pointer",
-        }
       });
 
     
@@ -93,23 +86,27 @@ const Chart = () => {
         {/* </Grid> */}
         {/* <Grid> */}
 
-        <div className="view_bus_container">
+        <div className="chart_container">
                     <TableContainer component={Paper}>
                         <Table className={classes.table} aria-label="customized table">
                             <TableHead>
                                 <TableRow>
                                     <StyledTableCell className={classes.cell} align="center">Bus Count</StyledTableCell>
-                                    </TableRow>
+                                    <StyledTableCell className={classes.cell} align="center">Conductor Count</StyledTableCell>
+                                    <StyledTableCell className={classes.cell} align="center">Today Income</StyledTableCell>
+                                    <StyledTableCell className={classes.cell} align="center">Month Income</StyledTableCell>
+                                </TableRow>
                             </TableHead>
 
                             <TableBody>
-                               
-                                    <StyledTableRow >
+                                <StyledTableRow >
                                         <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{buscount}</StyledTableCell>
-                                        </StyledTableRow>
-                                         
+                                        <StyledTableCell className={classes.cell} align="center">10</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center">10000</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center">2000000</StyledTableCell>
+                                </StyledTableRow>
                             </TableBody>
-                           </Table>
+                        </Table>
                     </TableContainer>
                 </div>
                                          
