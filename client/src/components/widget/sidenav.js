@@ -193,7 +193,7 @@ const SideNav = ({ setAuth }) => {
                         </li>
 
                         <li>
-                            <a href="#" className="menu-item">
+                            <a className="menu-item" onClick={() => {history.push("../routemap");}}>
                                 <div className="menu-icon">
                                     <MapIcon />
                                 </div>
