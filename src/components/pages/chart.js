@@ -16,11 +16,75 @@ import 'react-toastify/dist/ReactToastify.css';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import { Pie, defaults } from 'react-chartjs-2'
 import '../style/chart.css';
+import '../style/viewhalt.css';
 
-const chart = () => {
+toast.configure();
+
+    const StyledTableCell = withStyles((theme) => ({
+        head: {
+          backgroundColor: theme.palette.common.black,
+          color: theme.palette.common.white,
+        },
+        body: {
+          fontSize: 14,
+        },
+      }))(TableCell);
+      
+      const StyledTableRow = withStyles((theme) => ({
+        root: {
+          '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+          },
+        },
+      }))(TableRow);
+
+      const useStyles = makeStyles({
+        table: {
+          minWidth: 500,
+        },
+
+        cell: {
+            width: 200,
+            height: 50
+        },
+
+        cellAction: {
+            width: 100,
+            height: 50,
+            //align: "center",
+            cursor: "pointer",
+        }
+      });
+
+    
+
+
+const Chart = () => {
+
+  
+  const [buscount, setBuscount] = useState([]);
+        
+    
+  async function getBusses() {
+    const res = await fetch("http://localhost:5000/admin/busses/buscount");
+
+    const busArray = await res.json();
+
+      setBuscount(busArray);
+      console.log(busArray);
+     
+  };
+  useEffect(() => {
+    getBusses();
+    
+  }, []);
+
+  const classes = useStyles();
+
+
   return (
     <Fragment>
-    <div >
+    <div className="body" >
         {/* <Grid> */}
             <Header />
         {/* </Grid> */}
@@ -28,9 +92,30 @@ const chart = () => {
             <SideNav />
         {/* </Grid> */}
         {/* <Grid> */}
+
+        <div className="view_bus_container">
+                    <TableContainer component={Paper}>
+                        <Table className={classes.table} aria-label="customized table">
+                            <TableHead>
+                                <TableRow>
+                                    <StyledTableCell className={classes.cell} align="center">Bus Count</StyledTableCell>
+                                    </TableRow>
+                            </TableHead>
+
+                            <TableBody>
+                               
+                                    <StyledTableRow >
+                                        <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{buscount}</StyledTableCell>
+                                        </StyledTableRow>
+                                         
+                            </TableBody>
+                           </Table>
+                    </TableContainer>
+                </div>
+                                         
         
 
-    <div className="add_bus_container">
+ {/* <div className="add_bus_container">
       <Pie
         data={{
           labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -84,10 +169,10 @@ const chart = () => {
           },
         }}
       />
-    </div>
+    </div>  */}
     </div>
 </Fragment>
   )
 }
 
-export default chart
+export default Chart;
