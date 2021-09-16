@@ -39,7 +39,7 @@ toast.configure();
 
       const useStyles = makeStyles({
         table: {
-          minWidth: 600,
+          maxWidth: 600,
         },
 
         cell: {
