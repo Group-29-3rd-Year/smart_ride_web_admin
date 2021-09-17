@@ -14,7 +14,7 @@ import Header from '../widget/header';
 import SideNav from '../widget/sidenav';
 import 'react-toastify/dist/ReactToastify.css';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
-import '../style/viewhalt.css';
+import '../style/viewfare.css';
 
 toast.configure();
 
