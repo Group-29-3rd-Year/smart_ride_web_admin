@@ -56,6 +56,10 @@ const Chart = () => {
 
   
   const [buscount, setBuscount] = useState([]);
+  const [conductorcount, setConductorcount] = useState([]);
+  const [todayincome, setTodayincome] = useState([]);
+  const [monthlyincome, setMonthlyincome] = useState([]);
+
         
     
   async function getBusses() {
@@ -71,6 +75,49 @@ const Chart = () => {
     getBusses();
     
   }, []);
+
+  async function getConductors() {
+    const res = await fetch("http://localhost:5000/admin/stat/conductorcount");
+
+    const conductorArray = await res.json();
+
+      setConductorcount(conductorArray);
+      console.log(conductorArray);
+     
+  };
+  useEffect(() => {
+    getConductors();
+    
+  }, []);
+
+  async function getTodayincome() {
+    const res = await fetch("http://localhost:5000/admin/stat/todayincome");
+
+    const todayincomeArray = await res.json();
+
+      setTodayincome(todayincomeArray);
+      console.log(todayincomeArray);
+     
+  };
+  useEffect(() => {
+    getTodayincome();
+    
+  }, []);
+
+  async function getMonthlyincome() {
+    const res = await fetch("http://localhost:5000/admin/stat/monthlyincome");
+
+    const monthlyincomeArray = await res.json();
+
+      setMonthlyincome(monthlyincomeArray);
+      console.log(monthlyincomeArray);
+     
+  };
+  useEffect(() => {
+    getMonthlyincome();
+    
+  }, []);
+
 
   const classes = useStyles();
 
@@ -101,9 +148,10 @@ const Chart = () => {
                             <TableBody>
                                 <StyledTableRow >
                                         <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{buscount}</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">10</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">10000</StyledTableCell>
-                                        <StyledTableCell className={classes.cell} align="center">2000000</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{conductorcount}</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{todayincome}</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{monthlyincome}</StyledTableCell>
+                                        
                                 </StyledTableRow>
                             </TableBody>
                         </Table>
