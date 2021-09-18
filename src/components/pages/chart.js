@@ -14,7 +14,7 @@ import Header from '../widget/header';
 import SideNav from '../widget/sidenav';
 import 'react-toastify/dist/ReactToastify.css';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
-import { Pie, defaults } from 'react-chartjs-2'
+import { Bar, defaults } from 'react-chartjs-2'
 import '../style/chart.css';
 import '../style/viewhalt.css';
 
@@ -59,6 +59,10 @@ const Chart = () => {
   const [conductorcount, setConductorcount] = useState([]);
   const [todayincome, setTodayincome] = useState([]);
   const [monthlyincome, setMonthlyincome] = useState([]);
+  const [passengercount, setPassengercount] = useState([]);
+  const [haltcount, setHaltcount] = useState([]);
+  const [usercount, setUsercount] = useState([]);
+  const [routescount, setRoutescount] = useState([]);
 
         
     
@@ -71,10 +75,7 @@ const Chart = () => {
       console.log(busArray);
      
   };
-  useEffect(() => {
-    getBusses();
-    
-  }, []);
+
 
   async function getConductors() {
     const res = await fetch("http://localhost:5000/admin/stat/conductorcount");
@@ -85,10 +86,7 @@ const Chart = () => {
       console.log(conductorArray);
      
   };
-  useEffect(() => {
-    getConductors();
-    
-  }, []);
+ 
 
   async function getTodayincome() {
     const res = await fetch("http://localhost:5000/admin/stat/todayincome");
@@ -99,10 +97,7 @@ const Chart = () => {
       console.log(todayincomeArray);
      
   };
-  useEffect(() => {
-    getTodayincome();
-    
-  }, []);
+
 
   async function getMonthlyincome() {
     const res = await fetch("http://localhost:5000/admin/stat/monthlyincome");
@@ -113,8 +108,68 @@ const Chart = () => {
       console.log(monthlyincomeArray);
      
   };
+
+  async function getPassengercount() {
+    const res = await fetch("http://localhost:5000/admin/stat/passengercount");
+
+    const passengercountArray = await res.json();
+
+      setPassengercount(passengercountArray);
+      console.log(passengercountArray);
+     
+  };
+
+  async function getHaltcount() {
+    const res = await fetch("http://localhost:5000/admin/stat/haltcount");
+
+    const haltcountArray = await res.json();
+
+      setPassengercount(haltcountArray);
+      console.log(haltcountArray);
+     
+  };
+
+  async function getHaltcount() {
+    const res = await fetch("http://localhost:5000/admin/stat/haltcount");
+
+    const haltcountArray = await res.json();
+
+      setHaltcount(haltcountArray);
+      console.log(haltcountArray);
+     
+  };
+
+  async function getUsercount() {
+    const res = await fetch("http://localhost:5000/admin/stat/usercount");
+
+    const usercountArray = await res.json();
+
+      setUsercount(usercountArray);
+      console.log(usercountArray);
+     
+  };
+
+  async function getRoutescount() {
+    const res = await fetch("http://localhost:5000/admin/stat/routescount");
+
+    const routescountArray = await res.json();
+
+      setRoutescount(routescountArray);
+      console.log(routescountArray);
+     
+  };
+
+
+
   useEffect(() => {
+    getConductors();
+    getBusses();
+    getTodayincome();
     getMonthlyincome();
+    getPassengercount();
+    getHaltcount();
+    getUsercount();
+    getRoutescount() ;
     
   }, []);
 
@@ -169,20 +224,22 @@ const Chart = () => {
                 <br/>
                      
 
-  <div className="chart_container2">
+  <div className="chart">
    
     
-      <Pie
+      <Bar
         data={{
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: ['Total passengers', 'Total Halts', 'Total users', 'Total Routes'],
           datasets: [
             {
-              label: '# of votes',
-              data: [12, 19, 3, 5, 2, 3],
+              label: 'Total counts for Today',
+              data: [passengercount, haltcount, usercount, routescount],
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)',
@@ -191,6 +248,8 @@ const Chart = () => {
                 'rgba(255, 99, 132, 1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)',
