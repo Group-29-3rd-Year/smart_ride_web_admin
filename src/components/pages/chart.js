@@ -158,9 +158,20 @@ const Chart = () => {
                     </TableContainer>
                 </div>
                                          
-        
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                     
 
- {/* <div className="add_bus_container">
+  <div className="chart_container2">
+   
+    
       <Pie
         data={{
           labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -214,8 +225,9 @@ const Chart = () => {
           },
         }}
       />
-    </div>  */}
+    </div>  
     </div>
+    
 </Fragment>
   )
 }
