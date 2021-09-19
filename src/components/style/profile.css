@@ -3,12 +3,7 @@
     padding: 0;
 }
 
-/* .body {
-    width: 100%;
-    height: 100%;
-} */
-
-.update_con_container {
+.profile_container {
     background-color:#e1e1dd;
     border-radius: 20px;
     width: auto;
@@ -25,27 +20,13 @@
     position: absolute;
 }
 
-.update_con_container h2 {
+.profile_container h2 {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 180%;
-    margin-left: 60px;
+    margin-left: 30%;
+    margin-bottom: 20px;
 }
 
-.update_con_container label {
-    margin: 5px 10px 5px 0;
-    text-align: center;
-    display: inline-block;
-    font-weight: bold;
-    font-size: large;
-    position: relative;
-}
-
-/* .col-25 {
-    width: 40%;
-    margin-top: 6px;
-    margin-left: 10px;
-} */
-  
 .col-75 {
     float: left;
     width: 80%;
@@ -53,7 +34,7 @@
     margin-left: 70px;
 }
   
-.update_con_container input {
+.profile_container input {
     text-align: left;
     padding: 10px;
     padding-left: 10px;
@@ -61,7 +42,7 @@
     background-color: #fff;
     border-radius: 10px;
     border: 1px solid #ddd;
-    margin-left: 40px;
+    margin-left: 60px;
 }
 
 .add-form-row::after {
@@ -70,17 +51,17 @@
     clear: both;
 }
   
-.update_con_container button:hover {
+.profile_container button:hover {
     background-color: royalblue;
 }
 
-.update_con_container .btn_box {
+.profile_container .btn_box {
     display: inline-block;
     margin-top: 20px;
     margin-left: 90px;
 }
 
-.update_con_container .bus_update_btn {
+.profile_container .bus_update_btn {
     padding: 10px 20px;
     background-color: green;
     border: 1px solid #ddd;
@@ -90,29 +71,4 @@
     
     font-weight: bold;
     font-size: large;
-}
-
-.update_con_container .bus_cancel_btn {
-    padding: 10px 20px;
-    background-color: red;
-    border: 1px solid #ddd;
-    color: white;
-    cursor: pointer;
-    border-radius: 20px;
-    margin-left: 10px;
-    font-weight: bold;
-    font-size: large;
-}
-
-
-
-@media (max-width: 800px) {
-    .update_con_container input {
-      margin: 10px 0;
-    }
-    
-    .update_con_container {
-      flex-direction: column;
-      align-items: stretch;
-    }
 }

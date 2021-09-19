@@ -11,6 +11,7 @@ import ListIcon from '@material-ui/icons/List';
 import StreetviewIcon from '@material-ui/icons/Streetview';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
+import PersonIcon from '@material-ui/icons/Person';
 import { makeStyles } from '@material-ui/core/styles';
 import './sidenav.css';
 import { Button } from '@material-ui/core';
@@ -250,8 +251,23 @@ const SideNav = ({ setAuth }) => {
                         </li>
                     </ul>
                 </div>
-                
+
                 <div className="side-menu-footer">
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="default"              //// have to check path
+                        className={classes.submit}
+                        onClick={ () => {history.push("../profile");}}
+                    >
+                        <PersonIcon />
+                        Profile
+                    </Button>
+                    {/* <button onClick={ e => logout(e)}>Log Out</button> */}
+                </div>
+                
+                {/* <div className="side-menu-footer">
                     <Button
                         type="submit"
                         fullWidth
@@ -262,8 +278,7 @@ const SideNav = ({ setAuth }) => {
                     >
                         Log Out
                     </Button>
-                    {/* <button onClick={ e => logout(e)}>Log Out</button> */}
-                </div>
+                </div> */}
             </div>
         </Fragment>
         
