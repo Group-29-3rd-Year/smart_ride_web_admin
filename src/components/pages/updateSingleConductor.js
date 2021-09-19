@@ -83,7 +83,7 @@ const UpdateSingleConductor = (props) => {
             if(parseRes){
                 //console.log(parseRes);
                 window.location.reload();
-                toast.success("Registered Successfully");
+                toast.success("Updated Successfully");
             }else{
                 
                 toast.error(parseRes)
