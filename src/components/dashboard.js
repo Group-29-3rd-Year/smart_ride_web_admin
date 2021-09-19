@@ -17,9 +17,8 @@ const Dashboard = ({ setAuth }) => {
                     <SideNav />
                 {/* </Grid > */}
 
-                <Button 
-                    
-                />
+                <Button />
+                <div className="backgroundImg"></div>
             </div>
         </Fragment>
     );

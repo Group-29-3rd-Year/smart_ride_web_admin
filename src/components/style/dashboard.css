@@ -16,3 +16,17 @@ body {font-family: Arial, Helvetica, sans-serif;}
     margin: 0 auto;
     position: absolute;
 }
+
+.backgroundImg {
+    display: inline-block;
+    margin-top: 50px;
+    height: 900;
+    width: 1850px;
+    max-width: 200%;
+    text-align: center;
+    background-image: url('../images/bg.jpg');
+    background-position: center;
+    align-self: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
