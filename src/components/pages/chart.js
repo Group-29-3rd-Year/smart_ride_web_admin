@@ -40,7 +40,7 @@ toast.configure();
 
       const useStyles = makeStyles({
         table: {
-          maxWidth: 800,
+          maxWidth: 1000,
         },
 
         cell: {
@@ -54,7 +54,7 @@ toast.configure();
 
 const Chart = () => {
 
-  
+  const [reaspascount, setReagPascount] = useState([]);
   const [buscount, setBuscount] = useState([]);
   const [conductorcount, setConductorcount] = useState([]);
   const [todayincome, setTodayincome] = useState([]);
@@ -64,10 +64,18 @@ const Chart = () => {
   const [usercount, setUsercount] = useState([]);
   const [routescount, setRoutescount] = useState([]);
 
-        
+  async function getRegisterPassengerss() {
+    const res = await fetch("http://localhost:5000/admin/stat/regpascount");
+
+    const regpas = await res.json();
+
+      setReagPascount(regpas);
+      console.log(regpas);
+     
+  };      
     
   async function getBusses() {
-    const res = await fetch("http://localhost:5000/admin/busses/buscount");
+    const res = await fetch("http://localhost:5000/admin/stat/buscount");
 
     const busArray = await res.json();
 
@@ -124,16 +132,6 @@ const Chart = () => {
 
     const haltcountArray = await res.json();
 
-      setPassengercount(haltcountArray);
-      console.log(haltcountArray);
-     
-  };
-
-  async function getHaltcount() {
-    const res = await fetch("http://localhost:5000/admin/stat/haltcount");
-
-    const haltcountArray = await res.json();
-
       setHaltcount(haltcountArray);
       console.log(haltcountArray);
      
@@ -169,7 +167,8 @@ const Chart = () => {
     getPassengercount();
     getHaltcount();
     getUsercount();
-    getRoutescount() ;
+    getRoutescount();
+    getRegisterPassengerss();
     
   }, []);
 
@@ -195,6 +194,7 @@ const Chart = () => {
                                 <TableRow>
                                     <StyledTableCell className={classes.cell} align="center">Bus Count</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Conductor Count</StyledTableCell>
+                                    <StyledTableCell className={classes.cell} align="center">Registered Passengers</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Today Income</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Month Income</StyledTableCell>
                                 </TableRow>
@@ -204,6 +204,7 @@ const Chart = () => {
                                 <StyledTableRow >
                                         <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{buscount}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{conductorcount}</StyledTableCell>
+                                        <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{reaspascount}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{todayincome}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center" component="th" scope="row">{monthlyincome}</StyledTableCell>
                                         
