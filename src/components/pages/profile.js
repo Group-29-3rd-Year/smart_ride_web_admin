@@ -39,7 +39,51 @@ const Profile = (props) => {
         setPrevEmail(dataArray['user_email']);
     }
 
+    const [inputs, setInputs] = useState({
+        
+        name: "",
+        number: "",
+        email: "",
+        
+    });
 
+    const {name, number, email} = inputs;
+
+    const onChange = (e) => {
+        setInputs({...inputs, [e.target.name]
+        : e.target.value})
+    };
+
+    const onSubmitForm = async (e) => {
+        e.preventDefault()
+        
+        try {
+            
+            const body = {name, number, email};
+
+            const response = await fetch(`http://localhost:5000/admin/smartride/updateprofile/${adminId}`, {
+                method: "PUT",
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify(body)
+            });
+
+            const parseRes = await response.json()
+
+            if(parseRes){
+                //console.log(parseRes);
+                window.location.reload();
+                toast.success("Updated Successfully");
+                
+            }else{
+                
+                toast.error(parseRes)
+            }
+
+
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
 
 
     useEffect(() => {
@@ -57,19 +101,19 @@ const Profile = (props) => {
                 <div className="profile_container">
                     <h2>Profile</h2>
 
-                    <form >
+                    <form onSubmit={onSubmitForm}>
                         <div className="add-form-row">
                             <div className="col-75">
                                 <label>Name</label>
                                 <input 
                                     type="text" 
                                     name="name"
+                                    id={name}
                                     placeholder="Name"
-                                    //value={number}
                                     defaultValue={prevName}
-                                    //onChange = {e => onChange(e)}
+                                    onChange = {e => onChange(e)}
                                     required
-                                    readOnly
+                                    
                                 />
                             </div>
                         </div>
@@ -80,12 +124,12 @@ const Profile = (props) => {
                                 <input 
                                     type="text" 
                                     name="number"
+                                    id={number}
                                     placeholder="Number"
-                                    //value={number}
                                     defaultValue={prevNumber}
-                                    //onChange = {e => onChange(e)}
+                                    onChange = {e => onChange(e)}
                                     required
-                                    readOnly
+                                    
                                 />
                                
                             </div>
@@ -97,18 +141,20 @@ const Profile = (props) => {
                                 <input 
                                     type="text" 
                                     name="email"
+                                    id={email}
                                     placeholder="Email"
-                                    //value={number}
                                     defaultValue={prevEmail}
-                                    //onChange = {e => onChange(e)}
+                                    onChange = {e => onChange(e)}
                                     required
-                                    readOnly
+                                    
                                 />
                                 
                             </div>
                         </div>
 
-                       
+                        <div className="btn_box">
+                            <button className="bus_update_btn">Update</button>
+                        </div>
                         
                     </form>
                 </div>
