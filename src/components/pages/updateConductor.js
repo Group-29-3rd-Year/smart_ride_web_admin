@@ -52,6 +52,7 @@ toast.configure();
         cellAction: {
             width: 100,
             height: 50,
+            cursor: "pointer"
         },
       });
 
