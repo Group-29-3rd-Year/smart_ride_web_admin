@@ -17,16 +17,17 @@ body {font-family: Arial, Helvetica, sans-serif;}
     position: absolute;
 }
 
-.backgroundImg {
+.backgroundImgdash {
     display: inline-block;
-    margin-top: 50px;
-    height: 900;
-    width: 1850px;
-    max-width: 200%;
+    max-height: fit-content;
+    margin-top: 36px;
+    height: 535px;
+    width: 135px;
+    max-width: 100%;
     text-align: center;
-    background-image: url('../images/bg.jpg');
+    background-image: url('../images/img7.jpg');
     background-position: center;
     align-self: center;
-    background-size: contain;
+    background-size: auto;
     background-repeat: no-repeat;
 }

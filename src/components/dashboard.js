@@ -1,8 +1,8 @@
 import { Button, Grid } from '@material-ui/core';
 import React, {Fragment} from 'react';
-import './style/dashboard.css';
 import Header from './widget/header';
 import SideNav from './widget/sidenav';
+import './style/dash.css';
 
 const Dashboard = ({ setAuth }) => {
 
@@ -18,10 +18,16 @@ const Dashboard = ({ setAuth }) => {
                 {/* </Grid > */}
 
                 <Button />
-                <div className="backgroundImg"></div>
+                   
             </div>
+
+            <div className="backgroundImgdash">
+            </div>
+
         </Fragment>
-    );
+
+        
+        );
 };
 
 
