@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import { toast } from 'react-toastify';
 // import Button from '@material-ui/core/Button';
 //import { makeStyles } from '@material-ui/core/styles';
-import './style/login.css';
 import 'react-toastify/dist/ReactToastify.css';
+import './style/login.css';
 
 toast.configure();
 
@@ -65,7 +65,7 @@ const Login = ({ setAuth }) => {
     return(
         <Fragment>
             <div className="body">
-                <div className="backgroundImg"></div>
+                <div className="backgroundImglogin"></div>
                 <div className="f_container">
                     <h1>Login</h1>
                     <form onSubmit={onSubmitForm}>
