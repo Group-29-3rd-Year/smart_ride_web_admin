@@ -17,6 +17,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import 'react-toastify/dist/ReactToastify.css';
 import '../style/updateconductor.css';
 import { Link } from 'react-router-dom';
+import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 
 toast.configure();
 
@@ -50,6 +51,12 @@ toast.configure();
         },
 
         cellAction: {
+            width: 50,
+            height: 50,
+            cursor: "pointer"
+        },
+
+        cellActionHead: {
             width: 100,
             height: 50,
             cursor: "pointer"
@@ -83,6 +90,57 @@ const UpdateConductor = () => {
         
     };
 
+    async function deleteConAssign(id) {
+        console.log(id);
+        try {
+            const res = await fetch(`http://localhost:5000/admin/conductors/deleteassign/${id}`, {
+                method: "PUT"
+            });
+
+            const parseRes = await res.json();
+            setConList(conList.filter(con => con.user_id !== id));
+            setConListTwo(conListTwo.filter(con1 => con1.user_id !== id));
+
+            if(parseRes){
+                //console.log(parseRes);
+                //window.location.reload();
+                toast.success("Deleted Successfully");
+            }else{
+                
+                toast.error(parseRes)
+            }
+
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
+
+
+    async function deleteConNotAssign(id) {
+        console.log(id);
+        try {
+            const res = await fetch(`http://localhost:5000/admin/conductors/deletenotassign/${id}`, {
+                method: "PUT"
+            });
+
+            const parseRes = await res.json();
+            setConList(conList.filter(con => con.user_id !== id));
+            setConListTwo(conListTwo.filter(con1 => con1.user_id !== id));
+
+            if(parseRes){
+                //console.log(parseRes);
+                window.location.reload();
+                toast.success("Deleted Successfully");
+            }else{
+                
+                toast.error(parseRes)
+            }
+
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
+
     useEffect(() => {
         getConductors();
         getConductorsTwo();
@@ -104,7 +162,7 @@ const UpdateConductor = () => {
                                     <StyledTableCell className={classes.cell} align="center">Phone No</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Email</StyledTableCell>
                                     <StyledTableCell className={classes.cell} align="center">Bus No</StyledTableCell>
-                                    <StyledTableCell className={classes.cellAction} align="center">Action</StyledTableCell>
+                                    <StyledTableCell className={classes.cellActionHead} align="center">Action</StyledTableCell>
                                 </TableRow>
                             </TableHead>
 
@@ -116,6 +174,7 @@ const UpdateConductor = () => {
                                         <StyledTableCell className={classes.cell} align="center">{row.user_email}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">{row.bus_number}</StyledTableCell>
                                         <StyledTableCell className={classes.cellAction} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesingleconductor/${row.user_id}`}><EditIcon /></Link></StyledTableCell>
+                                        <StyledTableCell className={classes.cellAction} align="center"  height='5px' style={{ color: '#FF0000' }} onClick={() => { if (window.confirm('Are you sure to delete this ?')) deleteConAssign(row.user_id) } }><DeleteSweepIcon /></StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                                 {conListTwo.map((row) => (
@@ -125,6 +184,7 @@ const UpdateConductor = () => {
                                         <StyledTableCell className={classes.cell} align="center">{row.user_email}</StyledTableCell>
                                         <StyledTableCell className={classes.cell} align="center">Not Assigned</StyledTableCell>
                                         <StyledTableCell className={classes.cellAction} align="center" ><Link style={{ color: '#00FF00' }} to={`updatesingleconductor/${row.user_id}`}><EditIcon /></Link></StyledTableCell>
+                                        <StyledTableCell className={classes.cellAction} align="center"  height='5px' style={{ color: '#FF0000' }} onClick={() => { if (window.confirm('Are you sure to delete this ?')) deleteConNotAssign(row.user_id) } }><DeleteSweepIcon /></StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
