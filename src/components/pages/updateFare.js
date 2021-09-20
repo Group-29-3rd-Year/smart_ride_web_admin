@@ -97,7 +97,7 @@ const UpdateFare = () => {
 
             if(parseRes){
                 //console.log(parseRes);
-                //window.location.reload();
+                window.location.reload();
                 toast.success("Deleted Successfully");
             }else{
                 
