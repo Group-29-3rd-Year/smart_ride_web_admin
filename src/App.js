@@ -31,6 +31,7 @@ import ViewConductor from './components/pages/viewConductor';
 import UpdateConductor from './components/pages/updateConductor';
 import UpdateSingleConductor from './components/pages/updateSingleConductor';
 import RouteMap from './components/pages/routeMap';
+import Profile from './components/pages/profile';
 
 function App() {
 
@@ -259,7 +260,8 @@ function App() {
                 )
               }
             />
-                {/* chart */}
+
+              {/* chart */}
                 <Route 
               exact path="/chart" 
               render={props => 
@@ -270,12 +272,25 @@ function App() {
                 )
               }
             />
+
              {/* routemap */}
              <Route 
               exact path="/routemap" 
               render={props => 
                 isAuthenticated ? (
                   <RouteMap {...props} setAuth={setAuth}/>
+                ) : (
+                  <Redirect to="/smartride/login" />
+                )
+              }
+            />
+
+            {/* profile */}
+            <Route 
+              exact path="/profile" 
+              render={props => 
+                isAuthenticated ? (
+                  <Profile {...props} setAuth={setAuth}/>
                 ) : (
                   <Redirect to="/smartride/login" />
                 )
