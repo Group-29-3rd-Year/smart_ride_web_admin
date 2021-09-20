@@ -16,13 +16,11 @@ const Dashboard = ({ setAuth }) => {
                 {/* <Grid > */}
                     <SideNav />
                 {/* </Grid > */}
-
-                <Button />
+                <div className="backgroundImgdash"></div>
                    
             </div>
 
-            <div className="backgroundImgdash">
-            </div>
+            
 
         </Fragment>
 
