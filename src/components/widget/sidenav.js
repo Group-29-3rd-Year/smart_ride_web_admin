@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import DirectionsBusIcon from '@material-ui/icons/DirectionsBus';
@@ -15,7 +15,6 @@ import PersonIcon from '@material-ui/icons/Person';
 import { makeStyles } from '@material-ui/core/styles';
 import './sidenav.css';
 import { Button } from '@material-ui/core';
-import AddBus from '../pages/addBus';
 
 import {
     BrowserRouter as Router, 
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const SideNav = ({ setAuth }) => {
+const SideNav = () => {
 
     const classes = useStyles();
 
@@ -47,11 +46,33 @@ const SideNav = ({ setAuth }) => {
     const [expand4, setExpand4] = useState(false);
     const [expand5, setExpand5] = useState(false);
 
-    const logout = (e) => {
-        e.preventDefault()
-        localStorage.removeItem("token")   //check logout
-        setAuth(false);
-    }
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const setAuth = (boolean) => {
+        setIsAuthenticated(boolean);
+    };
+
+    async function isAuth(){
+        try {
+          
+          const response  = await fetch("http://localhost:5000/admin/smartride/is-verify", {
+            method: "GET",
+            headers: { token : localStorage.token }
+          });
+    
+          const parseRes = await response.json()
+    
+          console.log(parseRes);
+          parseRes === true ? setIsAuthenticated(true): setIsAuthenticated(false);
+    
+        } catch (err) {
+          console.error(err.message)
+        }
+      }
+    
+      useEffect(() => {
+        isAuth()
+      })
 
     let history = useHistory();
 
@@ -263,6 +284,25 @@ const SideNav = ({ setAuth }) => {
                     >
                         <PersonIcon />
                         Profile
+                    </Button>
+                    {/* <button onClick={ e => logout(e)}>Log Out</button> */}
+                </div>
+
+                <div className="side-menu-footer">
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="default"              //// have to check path
+                        className={classes.submit}
+                        onClick={ () => {
+                            localStorage.removeItem("token");
+                            setAuth(false);
+                            window.location.reload();
+                            history.push("../smartride/login");
+                        }}
+                    >
+                        Logout
                     </Button>
                     {/* <button onClick={ e => logout(e)}>Log Out</button> */}
                 </div>
