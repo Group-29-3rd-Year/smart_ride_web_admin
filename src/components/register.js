@@ -55,11 +55,11 @@ const Register = ({ setAuth }) => {
                 localStorage.setItem("token", parseRes.token);
                 setAuth(true);
 
-                //toast.success("Registered Successfully");
+                toast.success("Registered Successfully");
             }else{
                 setAuth(false);
                 toast.error(parseRes)
-                //toast.success("Registered Successfully"); //wrong code
+                toast.success("Registered Successfully"); //wrong code
                 window.location.reload(); //wrong code 
             }
             
@@ -148,7 +148,7 @@ const Register = ({ setAuth }) => {
                         <div className="login">
                             <h4><b>Have Account ?</b></h4>
                             <div className="login-link">
-                                <Link to="/smartride/login" style={{ textDecoration: 'none', color: '#1e90ff' }} >Here</Link>
+                                <Link to="/" style={{ textDecoration: 'none', color: '#1e90ff' }} >Here</Link>
                             </div>
                         </div>
                     </form>

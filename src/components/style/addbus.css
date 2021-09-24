@@ -13,7 +13,7 @@
     border-radius: 20px;
     width: auto;
     height: auto;
-    margin-left: 500px;
+    margin-left: 560px;
     margin-right: 350px;
     margin-top: 120px;
     padding-top: 10px;
@@ -32,7 +32,7 @@
 }
 
 .add_bus_container label {
-    margin: 5px 10px 5px 0;
+    margin: 5px 10px 8px 0;
     text-align: center;
     display: inline-block;
     font-weight: bold;
@@ -76,7 +76,7 @@
 .add_bus_container .btn_box {
     display: inline-block;
     margin-top: 40px;
-    margin-left: 70px;
+    margin-left: 90px;
 }
 
 .add_bus_container .bus_update_btn {

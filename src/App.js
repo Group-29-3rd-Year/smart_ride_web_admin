@@ -69,17 +69,18 @@ function App() {
         <div className="container">
           <Switch>
 
-            {/* login */}
             <Route 
-              exact path="/smartride/login" 
+              exact path="/" 
               render={props => 
                 !isAuthenticated ? (
                   <Login {...props} setAuth={setAuth}/>
                 ) : (
+                  // <Redirect to="/smartride/login" />
                   <Redirect to="/smartride/dashboard" />
                 )
               }
             />
+
 
             {/* register */}
             <Route 
@@ -88,7 +89,8 @@ function App() {
                 !isAuthenticated ? (
                   <Register {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -100,7 +102,8 @@ function App() {
                 isAuthenticated ? (
                   <Dashboard {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -112,7 +115,8 @@ function App() {
                 isAuthenticated ? (
                   <AddBus {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -124,7 +128,8 @@ function App() {
                 isAuthenticated ? (
                   <UpdateBus {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -136,7 +141,8 @@ function App() {
                 isAuthenticated ? (
                   <UpdateSingleBus {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -148,7 +154,8 @@ function App() {
                 isAuthenticated ? (
                   <ViewBus {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -160,7 +167,8 @@ function App() {
                 isAuthenticated ? (
                   <AddHalt {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -172,7 +180,8 @@ function App() {
                 isAuthenticated ? (
                   <ViewHalt {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -184,7 +193,8 @@ function App() {
                 isAuthenticated ? (
                   <ViewConductor {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -196,7 +206,8 @@ function App() {
                 isAuthenticated ? (
                   <UpdateConductor {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -208,7 +219,8 @@ function App() {
                 isAuthenticated ? (
                   <UpdateSingleConductor {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -220,7 +232,8 @@ function App() {
                 isAuthenticated ? (
                   <AddFare {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -232,7 +245,8 @@ function App() {
                 isAuthenticated ? (
                   <ViewFare {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -244,7 +258,8 @@ function App() {
                 isAuthenticated ? (
                   <UpdateFare {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -256,7 +271,8 @@ function App() {
                 isAuthenticated ? (
                   <UpdateSingleFare {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -268,7 +284,8 @@ function App() {
                 isAuthenticated ? (
                   <Chart {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -280,7 +297,8 @@ function App() {
                 isAuthenticated ? (
                   <RouteMap {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
@@ -292,7 +310,8 @@ function App() {
                 isAuthenticated ? (
                   <Profile {...props} setAuth={setAuth}/>
                 ) : (
-                  <Redirect to="/smartride/login" />
+                  // <Redirect to="/smartride/login" />
+                  <Redirect to="/" />
                 )
               }
             />
