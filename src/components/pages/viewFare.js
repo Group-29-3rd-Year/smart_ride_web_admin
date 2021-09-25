@@ -54,7 +54,7 @@ const ViewFare = () => {
     const [fareList, setFareList] = useState([]);
 
     async function getFares() {
-        const res = await fetch("http://localhost:5000/admin/fares");
+        const res = await fetch("https://smartride-backend.herokuapp.com/admin/fares");
   
         const fareArray = await res.json();
   

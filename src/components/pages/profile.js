@@ -26,7 +26,7 @@ const Profile = (props) => {
     const body = {adminId};
 
     async function getData() {
-        const res = await fetch("http://localhost:5000/admin/smartride/getdata", {
+        const res = await fetch("https://smartride-backend.herokuapp.com/admin/smartride/getdata", {
             method: "POST",
             headers: {"Content-Type" : "application/json"},
             body: JSON.stringify(body)
@@ -61,7 +61,7 @@ const Profile = (props) => {
             
             const body = {name, number, email};
 
-            const response = await fetch(`http://localhost:5000/admin/smartride/updateprofile/${adminId}`, {
+            const response = await fetch(`https://smartride-backend.herokuapp.com/admin/smartride/updateprofile/${adminId}`, {
                 method: "PUT",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body)

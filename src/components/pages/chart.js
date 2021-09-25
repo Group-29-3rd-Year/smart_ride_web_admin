@@ -65,7 +65,7 @@ const Chart = () => {
   const [routescount, setRoutescount] = useState([]);
 
   async function getRegisterPassengerss() {
-    const res = await fetch("http://localhost:5000/admin/stat/regpascount");
+    const res = await fetch("https://smartride-backend.herokuapp.com/admin/stat/regpascount");
 
     const regpas = await res.json();
 
@@ -75,7 +75,7 @@ const Chart = () => {
   };      
     
   async function getBusses() {
-    const res = await fetch("http://localhost:5000/admin/stat/buscount");
+    const res = await fetch("https://smartride-backend.herokuapp.com/admin/stat/buscount");
 
     const busArray = await res.json();
 
@@ -86,7 +86,7 @@ const Chart = () => {
 
 
   async function getConductors() {
-    const res = await fetch("http://localhost:5000/admin/stat/conductorcount");
+    const res = await fetch("https://smartride-backend.herokuapp.com/admin/stat/conductorcount");
 
     const conductorArray = await res.json();
 
@@ -97,7 +97,7 @@ const Chart = () => {
  
 
   async function getTodayincome() {
-    const res = await fetch("http://localhost:5000/admin/stat/todayincome");
+    const res = await fetch("https://smartride-backend.herokuapp.com/admin/stat/todayincome");
 
     const todayincomeArray = await res.json();
 
@@ -108,7 +108,7 @@ const Chart = () => {
 
 
   async function getMonthlyincome() {
-    const res = await fetch("http://localhost:5000/admin/stat/monthlyincome");
+    const res = await fetch("https://smartride-backend.herokuapp.com/admin/stat/monthlyincome");
 
     const monthlyincomeArray = await res.json();
 
@@ -118,7 +118,7 @@ const Chart = () => {
   };
 
   async function getPassengercount() {
-    const res = await fetch("http://localhost:5000/admin/stat/passengercount");
+    const res = await fetch("https://smartride-backend.herokuapp.com/admin/stat/passengercount");
 
     const passengercountArray = await res.json();
 
@@ -128,7 +128,7 @@ const Chart = () => {
   };
 
   async function getHaltcount() {
-    const res = await fetch("http://localhost:5000/admin/stat/haltcount");
+    const res = await fetch("https://smartride-backend.herokuapp.com/admin/stat/haltcount");
 
     const haltcountArray = await res.json();
 
@@ -138,7 +138,7 @@ const Chart = () => {
   };
 
   async function getUsercount() {
-    const res = await fetch("http://localhost:5000/admin/stat/usercount");
+    const res = await fetch("https://smartride-backend.herokuapp.com/admin/stat/usercount");
 
     const usercountArray = await res.json();
 
@@ -148,7 +148,7 @@ const Chart = () => {
   };
 
   async function getRoutescount() {
-    const res = await fetch("http://localhost:5000/admin/stat/routescount");
+    const res = await fetch("https://smartride-backend.herokuapp.com/admin/stat/routescount");
 
     const routescountArray = await res.json();
 

@@ -34,7 +34,7 @@ const UpdateSingleFare = (props) => {
 
 
     async function getFareDetails() {
-        const det = await fetch(`http://localhost:5000/admin/fares/getsinglefare/${props.match.params.id}`);
+        const det = await fetch(`https://smartride-backend.herokuapp.com/admin/fares/getsinglefare/${props.match.params.id}`);
 
         const fareArray = await det.json();
 
@@ -58,7 +58,7 @@ const UpdateSingleFare = (props) => {
 
             const body = {fareNewPrice};
             console.log(fareNewPrice);
-            const response = await fetch(`http://localhost:5000/admin/fares/update/${props.match.params.id}`, {
+            const response = await fetch(`https://smartride-backend.herokuapp.com/admin/fares/update/${props.match.params.id}`, {
                 method: "PUT",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body)
