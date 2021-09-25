@@ -56,7 +56,7 @@ const ViewBus = () => {
     //const [busNewList, setBusNewList] = useState([]);
 
     async function getBusses() {
-      const res = await fetch("http://localhost:5000/admin/busses");
+      const res = await fetch("https://smartride-backend.herokuapp.com/admin/busses");
 
       const busArray = await res.json();
 
@@ -66,7 +66,7 @@ const ViewBus = () => {
     };
 
     async function getBusses2() {
-      const res = await fetch("http://localhost:5000/admin/busses/getbusses");
+      const res = await fetch("https://smartride-backend.herokuapp.com/admin/busses/getbusses");
 
       const busArray = await res.json();
 
