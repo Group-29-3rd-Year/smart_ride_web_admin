@@ -69,7 +69,7 @@ const UpdateConductor = () => {
     const [conListTwo, setConListTwo] = useState([]);
 
     async function getConductors() {
-        const res = await fetch("https://smartride-backend.herokuapp.com/admin/conductors");
+        const res = await fetch("http://localhost:5000/admin/conductors");
 
         const conArray = await res.json();
 
@@ -80,7 +80,7 @@ const UpdateConductor = () => {
     };
 
     async function getConductorsTwo() {
-        const res_two = await fetch("https://smartride-backend.herokuapp.com/admin/conductors/two");
+        const res_two = await fetch("http://localhost:5000/admin/conductors/two");
 
         const conArrayTwo = await res_two.json();
 
@@ -93,7 +93,7 @@ const UpdateConductor = () => {
     async function deleteConAssign(id) {
         console.log(id);
         try {
-            const res = await fetch(`https://smartride-backend.herokuapp.com/admin/conductors/deleteassign/${id}`, {
+            const res = await fetch(`http://localhost:5000/admin/conductors/deleteassign/${id}`, {
                 method: "PUT"
             });
 
@@ -119,7 +119,7 @@ const UpdateConductor = () => {
     async function deleteConNotAssign(id) {
         console.log(id);
         try {
-            const res = await fetch(`https://smartride-backend.herokuapp.com/admin/conductors/deletenotassign/${id}`, {
+            const res = await fetch(`http://localhost:5000/admin/conductors/deletenotassign/${id}`, {
                 method: "PUT"
             });
 
