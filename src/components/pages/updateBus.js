@@ -75,7 +75,7 @@ const UpdateBus = () => {
     const [busEnd, setBusEnd] = useState([]);
 
     async function getBusses() {
-      const res = await fetch("https://smartride-backend.herokuapp.com/admin/busses");
+      const res = await fetch("http://localhost:5000/admin/busses");
 
       const busArray = await res.json();
 
@@ -87,7 +87,7 @@ const UpdateBus = () => {
     }
 
     async function getBusses2() {
-        const res = await fetch("https://smartride-backend.herokuapp.com/admin/busses/getbusses");
+        const res = await fetch("http://localhost:5000/admin/busses/getbusses");
   
         const busArray = await res.json();
   
@@ -101,7 +101,7 @@ const UpdateBus = () => {
     async function deleteBus(id) {
         console.log(id);
         try {
-            const res = await fetch(`https://smartride-backend.herokuapp.com/admin/busses/delete/${id}`, {
+            const res = await fetch(`http://localhost:5000/admin/busses/delete/${id}`, {
                 method: "PUT"
             });
 

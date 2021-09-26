@@ -30,7 +30,7 @@ const AddFare = () => {
             console.log(fare_km);
             console.log(fare_price);
             
-            const response = await fetch("https://smartride-backend.herokuapp.com/admin/fares/add", {
+            const response = await fetch("http://localhost:5000/admin/fares/add", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body)

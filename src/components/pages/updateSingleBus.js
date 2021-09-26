@@ -27,7 +27,7 @@ const UpdateSingleBus = (props) => {
     const [haltList, setHaltList] = useState([]);
 
     async function getHalts() {
-        const res = await fetch("https://smartride-backend.herokuapp.com/admin/halts");
+        const res = await fetch("http://localhost:5000/admin/halts");
   
         const haltArray = await res.json();
   
@@ -48,7 +48,7 @@ const UpdateSingleBus = (props) => {
     //let bus = [];
     
     async function getBus() {
-        const res = await fetch(`https://smartride-backend.herokuapp.com/admin/busses/singlebus/${props.match.params.id}`);
+        const res = await fetch(`http://localhost:5000/admin/busses/singlebus/${props.match.params.id}`);
   
         const bus = await res.json();
   
@@ -62,7 +62,7 @@ const UpdateSingleBus = (props) => {
     };
 
         async function getStartHalt() {
-            const res_start = await fetch(`https://smartride-backend.herokuapp.com/admin/halts/${busPrevStart}`);
+            const res_start = await fetch(`http://localhost:5000/admin/halts/${busPrevStart}`);
             const bus_start = await res_start.json();
 
             setPrevBusStartName(bus_start[0].halt_name);
@@ -71,7 +71,7 @@ const UpdateSingleBus = (props) => {
         };
 
         async function getEndHalt() {
-            const res_end = await fetch(`https://smartride-backend.herokuapp.com/admin/halts/${busPrevEnd}`);
+            const res_end = await fetch(`http://localhost:5000/admin/halts/${busPrevEnd}`);
             const bus_end = await res_end.json();
 
             setPrevBusEndName(bus_end[0].halt_name);
@@ -125,7 +125,7 @@ const UpdateSingleBus = (props) => {
             console.log(number);
             console.log(busNewStart);
             console.log(busNewEnd);
-            const response = await fetch(`https://smartride-backend.herokuapp.com/admin/busses/update/${props.match.params.id}`, {
+            const response = await fetch(`http://localhost:5000/admin/busses/update/${props.match.params.id}`, {
                 method: "PUT",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body)

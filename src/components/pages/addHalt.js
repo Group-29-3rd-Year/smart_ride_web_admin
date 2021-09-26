@@ -28,7 +28,7 @@ const AddHalt = () => {
 
             const body = {halt_name};
             
-            const response = await fetch("https://smartride-backend.herokuapp.com/admin/halts/add", {
+            const response = await fetch("http://localhost:5000/admin/halts/add", {
                 method: "POST",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(body)
