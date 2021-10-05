@@ -70,8 +70,6 @@ toast.configure();
 const UpdateFare = () => {
 
     const [fareList, setFareList] = useState([]);
-    const [fareprice, setFarePrice] = useState([]);
-    //const [conListTwo, setConListTwo] = useState([]);
 
     async function getFares() {
         const res = await fetch("http://localhost:5000/admin/fares");
@@ -79,7 +77,6 @@ const UpdateFare = () => {
         const fareArray = await res.json();
 
         setFareList(fareArray);
-        setFarePrice(fareArray[0].fare_price);
         console.log(fareArray);
 
         
@@ -120,10 +117,10 @@ const UpdateFare = () => {
 
         
     // };
-
+ 
     useEffect(() => {
         getFares();
-       // getConductorsTwo();
+       // getConductorsTwo(); 
     }, []);
     
     const classes = useStyles();

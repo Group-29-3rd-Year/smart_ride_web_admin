@@ -71,8 +71,6 @@ const UpdateBus = () => {
     
     const [busList, setBusList] = useState([]);
     const [busList2, setBusList2] = useState([]);
-    const [busstart, setBusStart] = useState([]);
-    const [busEnd, setBusEnd] = useState([]);
 
     async function getBusses() {
       const res = await fetch("http://localhost:5000/admin/busses");
@@ -80,9 +78,6 @@ const UpdateBus = () => {
       const busArray = await res.json();
 
       setBusList(busArray);
-      setBusStart(busArray[0].route_start);
-      setBusEnd(busArray[0].route_end);
-
       //console.log(busArray);
     }
 
@@ -94,7 +89,6 @@ const UpdateBus = () => {
         setBusList2(busArray);
         //console.log(busArray);
     }
-
     // console.log(busstart);
     // console.log(busEnd);
 
